@@ -15,7 +15,8 @@
         "phpunit/phpunit": "3.7.*"
     },
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "kriswallsmith/buzz": "v0.10"
     },
     "autoload": {
         "psr-0": {
