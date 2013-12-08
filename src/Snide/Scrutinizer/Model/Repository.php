@@ -3,6 +3,8 @@
 
 namespace Snide\Scrutinizer\Model;
 
+use Snide\Scrutinizer\Model\Pdepend\Metrics;
+use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 
 /**
  * Class Repository
@@ -29,6 +31,12 @@ class Repository
      * @var Metrics
      */
     protected $metrics;
+    /**
+     * Pdepend metrics
+     *
+     * @var PdependMetrics
+     */
+    protected $pdependMetrics;
 
     /**
      * Inject data from array
@@ -42,8 +50,21 @@ class Repository
         }
 
         if (isset($data['values'])) {
-            $this->metrics = new Metrics($data['values']);
+            $$this->metricsFromArray($data);
         }
+    }
+
+    /**
+     * Load metrics from array
+     *
+     * @param array $data
+     */
+    public function metricsFromArray($data = array())
+    {
+        $this->metrics = new Metrics();
+        $this->metrics->fromArray($data['values']);
+        $this->pdependMetrics = new PdependMetrics();
+        $this->pdependMetrics->fromArray($data['values']);
     }
 
     /**
@@ -111,6 +132,29 @@ class Repository
     public function setMetrics(Metrics $metrics)
     {
         $this->metrics = $metrics;
+
+        return $this;
+    }
+
+    /**
+     * Getter pdependMetrics
+     *
+     * @return PdependMetrics
+     */
+    public function getPdependMetrics()
+    {
+        return $this->pdependMetrics;
+    }
+
+    /**
+     * Setter pdependMetrics
+     *
+     * @param PdependMetrics $pdependMetrics
+     * @return $this
+     */
+    public function setPdependMetrics(PdependMetrics $pdependMetrics)
+    {
+        $this->pdependMetrics = $pdependMetrics;
 
         return $this;
     }

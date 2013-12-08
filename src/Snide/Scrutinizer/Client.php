@@ -3,6 +3,7 @@
 namespace Snide\Scrutinizer;
 
 use Buzz\Browser;
+use Snide\Scrutinizer\Model\Repository;
 
 /**
  * Class Client
@@ -16,7 +17,7 @@ class Client
      *
      * @var string
      */
-    protected $apiUrl = 'https://scrutinizer-ci.com/api/repositories/';
+    protected $apiUrl = 'https://scrutinizer-ci.com/api/repositories';
     /**
      * Buzz browser client
      *
@@ -50,7 +51,6 @@ class Client
             throw new \UnexpectedValueException(sprintf('Repository type %s is not valid', $repoType));
         }
         $repositoryUrl = sprintf('%s/%s/%s/metrics', $this->apiUrl, $repoType, $slug);
-
         $repository = new Repository();
         $repositoryArray = json_decode($this->browser->get($repositoryUrl)->getContent(), true);
         if (!$repositoryArray) {
@@ -58,6 +58,8 @@ class Client
         }
 
         $repository->fromArray($repositoryArray);
+
+        return $repository;
     }
 
     /**
