@@ -12,11 +12,11 @@ namespace Snide\Scrutinizer\Model;
 class Repository
 {
     /**
-     * Name
+     * Slug (user/name)
      *
      * @var string
      */
-    protected $name;
+    protected $slug;
     /**
      * Branch
      *
@@ -47,24 +47,24 @@ class Repository
     }
 
     /**
-     * Getter name
+     * Getter slug
      *
      * @return string
      */
-    public function getName()
+    public function getSlug()
     {
-        return $this->name;
+        return $this->slug;
     }
 
     /**
-     * Setter name
+     * Setter slug
      *
-     * @param $name
+     * @param $slug
      * @return $this
      */
-    public function setName($name)
+    public function setSlug($slug)
     {
-        $this->name = $name;
+        $this->slug = $slug;
 
         return $this;
     }
