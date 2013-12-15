@@ -127,6 +127,12 @@ class Metrics
      * @var float
      */
     protected $criticalOperationsWeight;
+    /**
+     * Issues count
+     *
+     * @var int
+     */
+    protected $nbIssues;
 
     /**
      * Inject data from array
@@ -174,8 +180,28 @@ class Metrics
         $this->nbVeryGoodClasses = $data['scrutinizer.nb_classes.very_good'];
         $this->nbVeryGoodOperations = $data['scrutinizer.nb_operations.very_good'];
         $this->quality = $data['scrutinizer.quality'];
+        $this->nbIssues = $data['scrutinizer.nb_issues'];
     }
 
+    /**
+     * Getter nbIssues
+     *
+     * @return int
+     */
+    public function getNbIssues()
+    {
+        return $this->nbIssues;
+    }
+
+    /**
+     * Setter nbIssues
+     *
+     * @param $nbIssues
+     */
+    public function setNbIssues($nbIssues)
+    {
+        $this->nbIssues = $nbIssues;
+    }
 
     /**
      * Operations count

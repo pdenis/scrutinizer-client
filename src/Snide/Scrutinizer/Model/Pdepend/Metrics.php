@@ -132,6 +132,7 @@ class Metrics
      */
     public function loadCountFromArray($data = array())
     {
+
         $this->abstractClassesCount = $data['pdepend.number_of_abstract_classes'];
         $this->classesCount = $data['pdepend.number_of_classes'];
         $this->concreteClassesCount = $data['pdepend.number_of_concrete_classes'];
@@ -143,7 +144,7 @@ class Metrics
         $this->functionsCount = $data['pdepend.number_of_functions'];
         $this->packagesCount = $data['pdepend.number_of_packages'];
         $this->leadClassesCount = $data['pdepend.number_of_leaf_classes'];
-        $this->referencedClassesCount = $data['pdepend.number_of_referenced_classes"'];
+        $this->referencedClassesCount = $data['pdepend.number_of_referenced_classes'];
     }
 
     /**

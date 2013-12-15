@@ -3,7 +3,7 @@
 
 namespace Snide\Scrutinizer\Model;
 
-use Snide\Scrutinizer\Model\Pdepend\Metrics;
+use Snide\Scrutinizer\Model\Metrics;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 
 /**
@@ -50,7 +50,7 @@ class Repository
         }
 
         if (isset($data['values'])) {
-            $$this->metricsFromArray($data);
+            $this->metricsFromArray($data);
         }
     }
 
