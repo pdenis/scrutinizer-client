@@ -24,73 +24,73 @@ class Metrics
      * 
      * @var int
      */
-    protected $nbOperations;
+    protected $operationsCount;
     /**
      * Very good operations count
      * 
      * @var int
      */
-    protected $nbVeryGoodOperations;
+    protected $veryGoodOperationsCount;
     /**
      * Good operations count
      * 
      * @var int
      */
-    protected $nbGoodOperations;
+    protected $goodOperationsCount;
     /**
      * Satisfactory operations count
      * 
      * @var int
      */
-    protected $nbSatisfactoryOperations;
+    protected $satisfactoryOperationsCount;
     /**
      * Pass operations count
      * 
      * @var int
      */
-    protected $nbPassOperations;
+    protected $passOperationsCount;
     /**
      * Critical operations count
      * 
      * @var int
      */
-    protected $nbCriticalOperations;
+    protected $criticalOperationsCount;
     /**
      * Classes count
      * 
      * @var int
      */
-    protected $nbClasses;
+    protected $classesCount;
     /**
      * Very good classes count
      *
      * @var int
      */
-    protected $nbVeryGoodClasses;
+    protected $veryGoodClassesCount;
     /**
      * Good classes count
      *
      * @var int
      */
-    protected $nbGoodClasses;
+    protected $goodClassesCount;
     /**
      * Satisfactory classes count
      *
      * @var int
      */
-    protected $nbSatisfactoryClasses;
+    protected $satisfactoryClassesCount;
     /**
      * Pass classes count
      *
      * @var int
      */
-    protected $nbPassClasses;
+    protected $passClassesCount;
     /**
      * Critical classes count
      *
      * @var int
      */
-    protected $nbCriticalClasses;
+    protected $criticalClassesCount;
     /**
      * Quality rating
      *
@@ -132,7 +132,7 @@ class Metrics
      *
      * @var int
      */
-    protected $nbIssues;
+    protected $issuesCount;
 
     /**
      * Inject data from array
@@ -152,12 +152,12 @@ class Metrics
      */
     protected function operationsFromArray($data = array())
     {
-        $this->nbOperations = $data['scrutinizer.nb_operations'];
-        $this->nbVeryGoodOperations = $data['scrutinizer.nb_operations.very_good'];
-        $this->nbGoodOperations = $data['scrutinizer.nb_operations.good'];
-        $this->nbPassOperations = $data['scrutinizer.nb_operations.pass'];
-        $this->nbSatisfactoryOperations = $data['scrutinizer.nb_operations.satisfactory'];
-        $this->nbCriticalOperations = $data['scrutinizer.nb_operations.critical'];
+        $this->operationsCount = $data['scrutinizer.nb_operations'];
+        $this->veryGoodOperationsCount = $data['scrutinizer.nb_operations.very_good'];
+        $this->goodOperationsCount = $data['scrutinizer.nb_operations.good'];
+        $this->passOperationsCount = $data['scrutinizer.nb_operations.pass'];
+        $this->satisfactoryOperationsCount = $data['scrutinizer.nb_operations.satisfactory'];
+        $this->criticalOperationsCount = $data['scrutinizer.nb_operations.critical'];
         $this->criticalOperationsWeight = $data['scrutinizer.operations_weight.critical'];
         $this->passOperationsWeight = $data['scrutinizer.operations_weight.pass'];
         $this->goodOperationsWeight = $data['scrutinizer.operations_weight.good'];
@@ -172,35 +172,34 @@ class Metrics
      */
     protected function classesFromArray($data = array())
     {
-        $this->nbCriticalClasses = $data['scrutinizer.nb_classes.critical'];
-        $this->nbPassClasses = $data['scrutinizer.nb_classes.pass'];
-        $this->nbSatisfactoryClasses = $data['scrutinizer.nb_classes.satisfactory'];
-        $this->nbGoodClasses = $data['scrutinizer.nb_classes.good'];
-        $this->nbClasses = $data['scrutinizer.nb_classes'];
-        $this->nbVeryGoodClasses = $data['scrutinizer.nb_classes.very_good'];
-        $this->nbVeryGoodOperations = $data['scrutinizer.nb_operations.very_good'];
+        $this->criticalClassesCount = $data['scrutinizer.nb_classes.critical'];
+        $this->passClassesCount = $data['scrutinizer.nb_classes.pass'];
+        $this->satisfactoryClassesCount = $data['scrutinizer.nb_classes.satisfactory'];
+        $this->goodClassesCount = $data['scrutinizer.nb_classes.good'];
+        $this->classesCount = $data['scrutinizer.nb_classes'];
+        $this->veryGoodClassesCount = $data['scrutinizer.nb_classes.very_good'];
         $this->quality = $data['scrutinizer.quality'];
-        $this->nbIssues = $data['scrutinizer.nb_issues'];
+        $this->issuesCount = $data['scrutinizer.nb_issues'];
     }
 
     /**
-     * Getter nbIssues
+     * Getter issuesCount
      *
      * @return int
      */
-    public function getNbIssues()
+    public function getIssuesCount()
     {
-        return $this->nbIssues;
+        return $this->issuesCount;
     }
 
     /**
-     * Setter nbIssues
+     * Setter issuesCount
      *
-     * @param $nbIssues
+     * @param $issuesCount
      */
-    public function setNbIssues($nbIssues)
+    public function setIssuesCount($issuesCount)
     {
-        $this->nbIssues = $nbIssues;
+        $this->issuesCount = $issuesCount;
     }
 
     /**
@@ -208,9 +207,9 @@ class Metrics
      *
      * @return int
      */
-    public function getNbOperations()
+    public function getOperationsCount()
     {
-        return $this->nbOperations;
+        return $this->operationsCount;
     }
 
     /**
@@ -218,109 +217,219 @@ class Metrics
      *
      * @return int
      */
-    public function getNbVeryGoodOperations()
+    public function getVeryGoodOperationsCount()
     {
-        return $this->nbVeryGoodOperations;
+        return $this->veryGoodOperationsCount;
     }
 
     /**
-     * Getter good operations count
+     * Setter classesCount
      *
-     * @return int
+     * @param int $classesCount
      */
-    public function getNbGoodOperations()
+    public function setClassesCount($classesCount)
     {
-        return $this->nbGoodOperations;
+        $this->classesCount = $classesCount;
     }
 
     /**
-     * Getter satisfactory operations count
+     * Getter classesCount
      *
      * @return int
      */
-    public function getNbSatisfactoryOperations()
+    public function getClassesCount()
     {
-        return $this->nbSatisfactoryOperations;
+        return $this->classesCount;
     }
 
     /**
-     * Getter pass operations count
+     * Setter criticalClassesCount
      *
-     * @return int
+     * @param int $criticalClassesCount
      */
-    public function getNbPassOperations()
+    public function setCriticalClassesCount($criticalClassesCount)
     {
-        return $this->nbPassOperations;
+        $this->criticalClassesCount = $criticalClassesCount;
     }
 
     /**
-     * Getter critical operations count
+     * Getter criticalClassesCount
      *
      * @return int
      */
-    public function getNbCriticalOperations()
+    public function getCriticalClassesCount()
     {
-        return $this->nbCriticalOperations;
+        return $this->criticalClassesCount;
     }
 
     /**
-     * Getter classes operations count
+     * Setter criticalOperationsCount
      *
-     * @return int
+     * @param int $criticalOperationsCount
      */
-    public function getNbClasses()
+    public function setCriticalOperationsCount($criticalOperationsCount)
     {
-        return $this->nbClasses;
+        $this->criticalOperationsCount = $criticalOperationsCount;
     }
 
     /**
-     * Getter very good classes count
+     * Getter criticalOperationsCount
      *
      * @return int
      */
-    public function getNbVeryGoodClasses()
+    public function getCriticalOperationsCount()
     {
-        return $this->nbVeryGoodClasses;
+        return $this->criticalOperationsCount;
     }
 
     /**
-     * Getter good classes count
+     * Setter goodClassesCount
      *
-     * @return int
+     * @param int $goodClassesCount
      */
-    public function getNbGoodClasses()
+    public function setGoodClassesCount($goodClassesCount)
     {
-        return $this->nbGoodClasses;
+        $this->goodClassesCount = $goodClassesCount;
     }
 
     /**
-     * Getter satisfactory classes count
+     * Getter goodClassesCount
      *
      * @return int
      */
-    public function getNbSatisfactoryClasses()
+    public function getGoodClassesCount()
     {
-        return $this->nbSatisfactoryClasses;
+        return $this->goodClassesCount;
     }
 
     /**
-     * Getter pass classes count
+     * Setter goodOperationsCount
      *
-     * @return int
+     * @param int $goodOperationsCount
      */
-    public function getNbPassClasses()
+    public function setGoodOperationsCount($goodOperationsCount)
     {
-        return $this->nbPassClasses;
+        $this->goodOperationsCount = $goodOperationsCount;
     }
 
     /**
-     * Getter critical classes count
+     * Getter goodOperationsCount
      *
      * @return int
      */
-    public function getNbCriticalClasses()
+    public function getGoodOperationsCount()
     {
-        return $this->nbCriticalClasses;
+        return $this->goodOperationsCount;
+    }
+
+    /**
+     * Setter passOperationsCount
+     *
+     * @param int $passClassesCount
+     */
+    public function setPassClassesCount($passClassesCount)
+    {
+        $this->passClassesCount = $passClassesCount;
+    }
+
+    /**
+     * Getter passClassesCount
+     *
+     * @return int
+     */
+    public function getPassClassesCount()
+    {
+        return $this->passClassesCount;
+    }
+
+    /**
+     * Setter passOperationsCount
+     *
+     * @param int $passOperationsCount
+     */
+    public function setPassOperationsCount($passOperationsCount)
+    {
+        $this->passOperationsCount = $passOperationsCount;
+    }
+
+    /**
+     * Getter passOperationsCount
+     *
+     * @return int
+     */
+    public function getPassOperationsCount()
+    {
+        return $this->passOperationsCount;
+    }
+
+    /**
+     * Setter satisfactoryClassesCount
+     *
+     * @param int $satisfactoryClassesCount
+     */
+    public function setSatisfactoryClassesCount($satisfactoryClassesCount)
+    {
+        $this->satisfactoryClassesCount = $satisfactoryClassesCount;
+    }
+
+    /**
+     * Getter satisfactoryClassesCount
+     *
+     * @return int
+     */
+    public function getSatisfactoryClassesCount()
+    {
+        return $this->satisfactoryClassesCount;
+    }
+
+    /**
+     * Setter satisfactoryOperationsCount
+     *
+     * @param int $satisfactoryOperationsCount
+     */
+    public function setSatisfactoryOperationsCount($satisfactoryOperationsCount)
+    {
+        $this->satisfactoryOperationsCount = $satisfactoryOperationsCount;
+    }
+
+    /**
+     * Getter satisfactoryOperationsCount
+     *
+     * @return int
+     */
+    public function getSatisfactoryOperationsCount()
+    {
+        return $this->satisfactoryOperationsCount;
+    }
+
+    /**
+     * Setter veryGoodClassesCount
+     *
+     * @param int $veryGoodClassesCount
+     */
+    public function setVeryGoodClassesCount($veryGoodClassesCount)
+    {
+        $this->veryGoodClassesCount = $veryGoodClassesCount;
+    }
+
+    /**
+     * Getter veryGoodClassesCount
+     *
+     * @return int
+     */
+    public function getVeryGoodClassesCount()
+    {
+        return $this->veryGoodClassesCount;
+    }
+
+    /**
+     * Setter veryGoodOperationsCount
+     *
+     * @param int $veryGoodOperationsCount
+     */
+    public function setVeryGoodOperationsCount($veryGoodOperationsCount)
+    {
+        $this->veryGoodOperationsCount = $veryGoodOperationsCount;
     }
 
     /**
