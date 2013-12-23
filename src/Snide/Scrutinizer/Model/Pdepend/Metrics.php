@@ -52,7 +52,7 @@ class Metrics
     /**
      * @var int
      */
-    protected $leadClassesCount;
+    protected $leafClassesCount;
     /**
      * @var int
      */
@@ -143,7 +143,7 @@ class Metrics
         $this->interfacesCount = $data['pdepend.number_of_interfaces'];
         $this->functionsCount = $data['pdepend.number_of_functions'];
         $this->packagesCount = $data['pdepend.number_of_packages'];
-        $this->leadClassesCount = $data['pdepend.number_of_leaf_classes'];
+        $this->leafClassesCount = $data['pdepend.number_of_leaf_classes'];
         $this->referencedClassesCount = $data['pdepend.number_of_referenced_classes'];
     }
 
@@ -395,12 +395,12 @@ class Metrics
     }
 
     /**
-     * @param mixed $leadClassesCount
+     * @param mixed $leafClassesCount
      * @return int
      */
-    public function setLeadClassesCount($leadClassesCount)
+    public function setLeafClassesCount($leafClassesCount)
     {
-        $this->leadClassesCount = $leadClassesCount;
+        $this->leafClassesCount = $leafClassesCount;
 
         return $this;
     }
@@ -408,9 +408,9 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getLeadClassesCount()
+    public function getLeafClassesCount()
     {
-        return $this->leadClassesCount;
+        return $this->leafClassesCount;
     }
 
     /**

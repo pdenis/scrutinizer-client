@@ -203,6 +203,16 @@ class Metrics
     }
 
     /**
+     * Setter quality
+     *
+     * @param float $quality
+     */
+    public function setQuality($quality)
+    {
+        $this->quality = $quality;
+    }
+
+    /**
      * Operations count
      *
      * @return int
@@ -240,6 +250,16 @@ class Metrics
     public function getClassesCount()
     {
         return $this->classesCount;
+    }
+
+    /**
+     * Setter operationsCount
+     *
+     * @param int $operationsCount
+     */
+    public function setOperationsCount($operationsCount)
+    {
+        $this->operationsCount = $operationsCount;
     }
 
     /**
@@ -518,161 +538,6 @@ class Metrics
         return $this;
     }
 
-    /**
-     * Setter classes count
-     *
-     * @param int $nbClasses
-     * @return $this
-     */
-    public function setNbClasses($nbClasses)
-    {
-        $this->nbClasses = $nbClasses;
-
-        return $this;
-    }
-
-    /**
-     * Setter critical classes count
-     *
-     * @param int $nbCriticalClasses
-     * @return $this
-     */
-    public function setNbCriticalClasses($nbCriticalClasses)
-    {
-        $this->nbCriticalClasses = $nbCriticalClasses;
-
-        return $this;
-    }
-
-    /**
-     * Setter critical operations count
-     *
-     * @param int $nbCriticalOperations
-     * @return $this
-     */
-    public function setNbCriticalOperations($nbCriticalOperations)
-    {
-        $this->nbCriticalOperations = $nbCriticalOperations;
-
-        return $this;
-    }
-
-    /**
-     * Setter good classes count
-     *
-     * @param int $nbGoodClasses
-     * @return $this
-     */
-    public function setNbGoodClasses($nbGoodClasses)
-    {
-        $this->nbGoodClasses = $nbGoodClasses;
-
-        return $this;
-    }
-
-    /**
-     * Setter good operations count
-     *
-     * @param int $nbGoodOperations
-     * @return $this
-     */
-    public function setNbGoodOperations($nbGoodOperations)
-    {
-        $this->nbGoodOperations = $nbGoodOperations;
-
-        return $this;
-    }
-
-    /**
-     * Setter operations count
-     *
-     * @param int $nbOperations
-     * @return $this
-     */
-    public function setNbOperations($nbOperations)
-    {
-        $this->nbOperations = $nbOperations;
-
-        return $this;
-    }
-
-    /**
-     * Setter pass classes count
-     *
-     * @param int $nbPassClasses
-     * @return $this
-     */
-    public function setNbPassClasses($nbPassClasses)
-    {
-        $this->nbPassClasses = $nbPassClasses;
-
-        return $this;
-    }
-
-    /**
-     * Setter pass operations count
-     *
-     * @param int $nbPassOperations
-     * @return $this
-     */
-    public function setNbPassOperations($nbPassOperations)
-    {
-        $this->nbPassOperations = $nbPassOperations;
-
-        return $this;
-    }
-
-    /**
-     * Setter satisfactory classes count
-     *
-     * @param int $nbSatisfactoryClasses
-     * @return $this
-     */
-    public function setNbSatisfactoryClasses($nbSatisfactoryClasses)
-    {
-        $this->nbSatisfactoryClasses = $nbSatisfactoryClasses;
-
-        return $this;
-    }
-
-    /**
-     * Setter satisfactory operations count
-     *
-     * @param int $nbSatisfactoryOperations
-     * @return $this
-     */
-    public function setNbSatisfactoryOperations($nbSatisfactoryOperations)
-    {
-        $this->nbSatisfactoryOperations = $nbSatisfactoryOperations;
-
-        return $this;
-    }
-
-    /**
-     * Setter very good classes count
-     *
-     * @param int $nbVeryGoodClasses
-     * @return $this
-     */
-    public function setNbVeryGoodClasses($nbVeryGoodClasses)
-    {
-        $this->nbVeryGoodClasses = $nbVeryGoodClasses;
-
-        return $this;
-    }
-
-    /**
-     * Setter very good operations count
-     *
-     * @param int $nbVeryGoodOperations
-     * @return $this
-     */
-    public function setNbVeryGoodOperations($nbVeryGoodOperations)
-    {
-        $this->nbVeryGoodOperations = $nbVeryGoodOperations;
-
-        return $this;
-    }
 
     /**
      * Setter pass operations weight

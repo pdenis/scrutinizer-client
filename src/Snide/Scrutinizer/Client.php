@@ -30,7 +30,7 @@ class Client
      *
      * @param Browser $browser
      */
-    public function __construct(Browser $browser)
+    public function __construct(Browser $browser = null)
     {
         if (null === $browser) {
             $browser = new Browser();
