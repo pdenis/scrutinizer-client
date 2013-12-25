@@ -109,21 +109,21 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, $this->object->getPdependMetrics()->getInterfacesCount());
         $this->assertEquals(0, $this->object->getPdependMetrics()->getFunctionsCount());
         $this->assertEquals(12, $this->object->getPdependMetrics()->getClassesCount());
-        $this->assertEquals(917, $this->object->getPdependMetrics()->getNonCommentCodeLines());
+        $this->assertEquals(917, $this->object->getPdependMetrics()->getNonCommentCodeLinesCount());
         $this->assertEquals(1, $this->object->getPdependMetrics()->getMaxInheritanceDepth());
-        $this->assertEquals(1693, $this->object->getPdependMetrics()->getCodeLines());
-        $this->assertEquals(421, $this->object->getPdependMetrics()->getLogicalCodeLines());
+        $this->assertEquals(1693, $this->object->getPdependMetrics()->getCodeLinesCount());
+        $this->assertEquals(421, $this->object->getPdependMetrics()->getLogicalCodeLinesCount());
         $this->assertEquals(11, $this->object->getPdependMetrics()->getLeafClassesCount()); // Rename //getLeaf
         $this->assertEquals(30, $this->object->getPdependMetrics()->getReferencedClassesCount());
-        $this->assertEquals(697, $this->object->getPdependMetrics()->getExecutableCodeLines());
+        $this->assertEquals(697, $this->object->getPdependMetrics()->getExecutableCodeLinesCount());
         $this->assertEquals(11, $this->object->getPdependMetrics()->getConcreteClassesCount());
         $this->assertEquals(1, $this->object->getPdependMetrics()->getAbstractClassesCount());
-        $this->assertEquals(776, $this->object->getPdependMetrics()->getCommentCodeLines());
+        $this->assertEquals(776, $this->object->getPdependMetrics()->getCommentCodeLinesCount());
         $this->assertEquals(136, $this->object->getPdependMetrics()->getExtendedCyclomaticCount());
         $this->assertEquals(132, $this->object->getPdependMetrics()->getCyclomaticCount());
         $this->assertEquals(0.41666666666667, $this->object->getPdependMetrics()->getDerivedClassesAvg());
         $this->assertEquals(0.14285714285714, $this->object->getPdependMetrics()->getHierarchyHeightAvg());
-        $this->assertEquals(99, $this->object->getPdependMetrics()->getCalls());
+        $this->assertEquals(99, $this->object->getPdependMetrics()->getCallsCount());
         $this->assertEquals('master', $this->object->getBranch());
     }
 

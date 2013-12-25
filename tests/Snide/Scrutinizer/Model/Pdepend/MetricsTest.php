@@ -53,15 +53,15 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCalls
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCalls
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCallsCount
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCallsCount
      */
-    public function testCalls()
+    public function testCallsCount()
     {
-        $this->assertNull($this->object->getCalls());
+        $this->assertNull($this->object->getCallsCount());
         $calls = 12;
-        $this->object->setCalls($calls);
-        $this->assertEquals($calls, $this->object->getCalls());
+        $this->object->setCallsCount($calls);
+        $this->assertEquals($calls, $this->object->getCallsCount());
     }
 
     /**
@@ -77,27 +77,27 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCodeLines
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCodeLines
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCodeLinesCount
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCodeLinesCount
      */
-    public function testCodeLines()
+    public function testCodeLinesCount()
     {
-        $this->assertNull($this->object->getCodeLines());
+        $this->assertNull($this->object->getCodeLinesCount());
         $count = 12;
-        $this->object->setCodeLines($count);
-        $this->assertEquals($count, $this->object->getCodeLines());
+        $this->object->setCodeLinesCount($count);
+        $this->assertEquals($count, $this->object->getCodeLinesCount());
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCommentCodeLines
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCommentCodeLines
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCommentCodeLinesCount
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCommentCodeLinesCount
      */
-    public function testCommentCodeLines()
+    public function testCommentCodeLinesCount()
     {
-        $this->assertNull($this->object->getCommentCodeLines());
+        $this->assertNull($this->object->getCommentCodeLinesCount());
         $count = 12;
-        $this->object->setCommentCodeLines($count);
-        $this->assertEquals($count, $this->object->getCommentCodeLines());
+        $this->object->setCommentCodeLinesCount($count);
+        $this->assertEquals($count, $this->object->getCommentCodeLinesCount());
     }
 
     /**
@@ -149,15 +149,15 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getExecutableCodeLines
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setExecutableCodeLines
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getExecutableCodeLinesCount
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setExecutableCodeLinesCount
      */
-    public function testExecutableCodeLines()
+    public function testExecutableCodeLinesCount()
     {
-        $this->assertNull($this->object->getExecutableCodeLines());
+        $this->assertNull($this->object->getExecutableCodeLinesCount());
         $count = 12;
-        $this->object->setExecutableCodeLines($count);
-        $this->assertEquals($count, $this->object->getExecutableCodeLines());
+        $this->object->setExecutableCodeLinesCount($count);
+        $this->assertEquals($count, $this->object->getExecutableCodeLinesCount());
     }
 
     /**
@@ -210,15 +210,15 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getLogicalCodeLines
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setLogicalCodeLines
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getLogicalCodeLinesCount
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setLogicalCodeLinesCount
      */
-    public function testLogicalCodeLines()
+    public function testLogicalCodeLinesCount()
     {
-        $this->assertNull($this->object->getLogicalCodeLines());
+        $this->assertNull($this->object->getLogicalCodeLinesCount());
         $count = 12;
-        $this->object->setLogicalCodeLines($count);
-        $this->assertEquals($count, $this->object->getLogicalCodeLines());
+        $this->object->setLogicalCodeLinesCount($count);
+        $this->assertEquals($count, $this->object->getLogicalCodeLinesCount());
     }
 
     /**
@@ -246,15 +246,15 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getNonCommentCodeLines
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setNonCommentCodeLines
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getNonCommentCodeLinesCount
+     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setNonCommentCodeLinesCount
      */
-    public function testNonCommentCodeLines()
+    public function testNonCommentCodeLinesCount()
     {
-        $this->assertNull($this->object->getNonCommentCodeLines());
+        $this->assertNull($this->object->getNonCommentCodeLinesCount());
         $count = 12;
-        $this->object->setNonCommentCodeLines($count);
-        $this->assertEquals($count, $this->object->getNonCommentCodeLines());
+        $this->object->setNonCommentCodeLinesCount($count);
+        $this->assertEquals($count, $this->object->getNonCommentCodeLinesCount());
     }
 
     /**

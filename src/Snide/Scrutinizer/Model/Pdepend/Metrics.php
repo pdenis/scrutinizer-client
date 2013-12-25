@@ -36,7 +36,7 @@ class Metrics
     /**
      * @var int
      */
-    protected $nonCommentCodeLines;
+    protected $nonCommentCodeLinesCount;
     /**
      * @var int
      */
@@ -44,11 +44,11 @@ class Metrics
     /**
      * @var int
      */
-    protected $codeLines;
+    protected $codeLinesCount;
     /**
      * @var int
      */
-    protected $logicalCodeLines;
+    protected $logicalCodeLinesCount;
     /**
      * @var int
      */
@@ -60,7 +60,7 @@ class Metrics
     /**
      * @var int
      */
-    protected $executableCodeLines;
+    protected $executableCodeLinesCount;
     /**
      * @var int
      */
@@ -72,7 +72,7 @@ class Metrics
     /**
      * @var int
      */
-    protected $commentCodeLines;
+    protected $commentCodeLinesCount;
     /**
      * @var int
      */
@@ -84,7 +84,7 @@ class Metrics
     /**
      * @var int
      */
-    protected $calls;
+    protected $callsCount;
     /**
      * @var float
      */
@@ -114,14 +114,14 @@ class Metrics
      */
     public function loadGeneralFromArray($data = array())
     {
-        $this->calls = $data['pdepend.calls'];
-        $this->codeLines = $data['pdepend.lines_of_code'];
-        $this->commentCodeLines = $data['pdepend.comment_lines_of_code'];
+        $this->callsCount = $data['pdepend.calls'];
+        $this->codeLinesCount = $data['pdepend.lines_of_code'];
+        $this->commentCodeLinesCount = $data['pdepend.comment_lines_of_code'];
         $this->derivedClassesAvg = $data['pdepend.average_number_of_derived_classes'];
-        $this->executableCodeLines = $data['pdepend.executable_lines_of_code'];
-        $this->logicalCodeLines = $data['pdepend.logical_lines_of_code'];
+        $this->executableCodeLinesCount = $data['pdepend.executable_lines_of_code'];
+        $this->logicalCodeLinesCount = $data['pdepend.logical_lines_of_code'];
         $this->maxInheritanceDepth = $data['pdepend.maximum_depth_of_inheritance_tree'];
-        $this->nonCommentCodeLines = $data['pdepend.non_comment_lines_of_code'];
+        $this->nonCommentCodeLinesCount = $data['pdepend.non_comment_lines_of_code'];
         $this->hierarchyHeightAvg = $data['pdepend.average_hierarchy_height'];
     }
 
@@ -167,12 +167,12 @@ class Metrics
     }
 
     /**
-     * @param mixed $calls
+     * @param mixed $callsCount
      * @return int
      */
-    public function setCalls($calls)
+    public function setCallsCount($callsCount)
     {
-        $this->calls = $calls;
+        $this->callsCount = $callsCount;
 
         return $this;
     }
@@ -180,9 +180,9 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getCalls()
+    public function getCallsCount()
     {
-        return $this->calls;
+        return $this->callsCount;
     }
 
     /**
@@ -205,12 +205,12 @@ class Metrics
     }
 
     /**
-     * @param mixed $codeLines
+     * @param mixed $codeLinesCount
      * @return int
      */
-    public function setCodeLines($codeLines)
+    public function setCodeLinesCount($codeLinesCount)
     {
-        $this->codeLines = $codeLines;
+        $this->codeLinesCount = $codeLinesCount;
 
         return $this;
     }
@@ -218,18 +218,18 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getCodeLines()
+    public function getCodeLinesCount()
     {
-        return $this->codeLines;
+        return $this->codeLinesCount;
     }
 
     /**
-     * @param mixed $commentCodeLines
+     * @param mixed $commentCodeLinesCount
      * @return int
      */
-    public function setCommentCodeLines($commentCodeLines)
+    public function setCommentCodeLinesCount($commentCodeLinesCount)
     {
-        $this->commentCodeLines = $commentCodeLines;
+        $this->commentCodeLinesCount = $commentCodeLinesCount;
 
         return $this;
     }
@@ -237,9 +237,9 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getCommentCodeLines()
+    public function getCommentCodeLinesCount()
     {
-        return $this->commentCodeLines;
+        return $this->commentCodeLinesCount;
     }
 
     /**
@@ -300,12 +300,12 @@ class Metrics
     }
 
     /**
-     * @param mixed $executableCodeLines
+     * @param mixed $executableCodeLinesCount
      * @return int
      */
-    public function setExecutableCodeLines($executableCodeLines)
+    public function setExecutableCodeLinesCount($executableCodeLinesCount)
     {
-        $this->executableCodeLines = $executableCodeLines;
+        $this->executableCodeLinesCount = $executableCodeLinesCount;
 
         return $this;
     }
@@ -313,9 +313,9 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getExecutableCodeLines()
+    public function getExecutableCodeLinesCount()
     {
-        return $this->executableCodeLines;
+        return $this->executableCodeLinesCount;
     }
 
     /**
@@ -414,12 +414,12 @@ class Metrics
     }
 
     /**
-     * @param mixed $logicalCodeLines
+     * @param mixed $logicalCodeLinesCount
      * @return int
      */
-    public function setLogicalCodeLines($logicalCodeLines)
+    public function setLogicalCodeLinesCount($logicalCodeLinesCount)
     {
-        $this->logicalCodeLines = $logicalCodeLines;
+        $this->logicalCodeLinesCount = $logicalCodeLinesCount;
 
         return $this;
     }
@@ -427,9 +427,9 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getLogicalCodeLines()
+    public function getLogicalCodeLinesCount()
     {
-        return $this->logicalCodeLines;
+        return $this->logicalCodeLinesCount;
     }
 
     /**
@@ -471,12 +471,12 @@ class Metrics
     }
 
     /**
-     * @param mixed $nonCommentCodeLines
+     * @param mixed $nonCommentCodeLinesCount
      * @return int
      */
-    public function setNonCommentCodeLines($nonCommentCodeLines)
+    public function setNonCommentCodeLinesCount($nonCommentCodeLinesCount)
     {
-        $this->nonCommentCodeLines = $nonCommentCodeLines;
+        $this->nonCommentCodeLinesCount = $nonCommentCodeLinesCount;
 
         return $this;
     }
@@ -484,9 +484,9 @@ class Metrics
     /**
      * @return mixed
      */
-    public function getNonCommentCodeLines()
+    public function getNonCommentCodeLinesCount()
     {
-        return $this->nonCommentCodeLines;
+        return $this->nonCommentCodeLinesCount;
     }
 
     /**
