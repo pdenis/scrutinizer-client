@@ -13,6 +13,7 @@ namespace Snide\Scrutinizer\Model;
 
 use Snide\Scrutinizer\Model\Metrics;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
+use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
 
 /**
  * Class Repository
@@ -45,6 +46,12 @@ class Repository
      * @var PdependMetrics
      */
     protected $pdependMetrics;
+    /**
+     * Code coverage metrics
+     *
+     * @var CoverageMetrics
+     */
+    protected $coverageMetrics;
 
     /**
      * Inject data from array
@@ -73,6 +80,28 @@ class Repository
         $this->metrics->fromArray($data['values']);
         $this->pdependMetrics = new PdependMetrics();
         $this->pdependMetrics->fromArray($data['values']);
+        $this->coverageMetrics = new CoverageMetrics();
+        $this->coverageMetrics->fromArray($data['values']);
+    }
+
+    /**
+     * Setter coerageMetrics
+     *
+     * @param \Snide\Scrutinizer\Model\Coverage\Metrics $coverageMetrics
+     */
+    public function setCoverageMetrics($coverageMetrics)
+    {
+        $this->coverageMetrics = $coverageMetrics;
+    }
+
+    /**
+     * Getter coverageMetrics
+     *
+     * @return \Snide\Scrutinizer\Model\Coverage\Metrics
+     */
+    public function getCoverageMetrics()
+    {
+        return $this->coverageMetrics;
     }
 
     /**

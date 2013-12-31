@@ -16,10 +16,6 @@ namespace Snide\Scrutinizer\Model\Pdepend;
  *
  * @author Pascal DENIS <pascal.denis@businessdecision.com>
  */
-/**
- * Class Metrics
- * @package Snide\Scrutinizer\Model\Pdepend
- */
 class Metrics
 {
     /**

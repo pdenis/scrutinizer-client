@@ -32,23 +32,6 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
         $this->object = new Metrics();
     }
 
-    public function testFromArray()
-    {
-
-    }
-
-    public function testGeneralFromArray()
-    {
-
-    }
-
-    public function testCountFromArray()
-    {
-
-    }
-
-
-
     /**
      * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getAbstractClassesCount
      * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setAbstractClassesCount
