@@ -32,7 +32,7 @@ To access Scrutinizer API, you can do :
 <?php
     // Access github repository pdenis/monitoring
     $client = new Snide\Scrutinizer\Client();
-    $repo = $client->fetch('pdenis/monitoring');
+    $repo = $client->fetchRepository('pdenis/monitoring');
 ```
 
 That's all!
