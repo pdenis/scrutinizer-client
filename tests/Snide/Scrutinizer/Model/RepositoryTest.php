@@ -13,6 +13,7 @@ namespace Snide\Scrutinizer\Model;
 
 use Snide\Scrutinizer\Model\Metrics;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
+use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
 
 /**
  * Class RepositoryTest
@@ -79,7 +80,19 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             "scrutinizer.nb_ignored_issues": 0,
             "scrutinizer.quality": 9.1779459838953,
             "scrutinizer.operations_weight.very_good": 6.11,
-            "scrutinizer.operations_weight.good": 0.23
+            "scrutinizer.operations_weight.good": 0.23,
+            "php_code_coverage.files": 17,
+            "php_code_coverage.lines_of_code": 1856,
+            "php_code_coverage.non_comment_lines_of_code": 915,
+            "php_code_coverage.classes": 12,
+            "php_code_coverage.methods": 82,
+            "php_code_coverage.covered_methods": 77,
+            "php_code_coverage.conditionals": 0,
+            "php_code_coverage.covered_conditionals": 0,
+            "php_code_coverage.statements": 323,
+            "php_code_coverage.covered_statements": 295,
+            "php_code_coverage.elements": 405,
+            "php_code_coverage.covered_elements": 372
             }
         }';
     }
@@ -111,8 +124,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(6.11, $this->object->getMetrics()->getVeryGoodOperationsWeight());
         $this->assertEquals(0.23, $this->object->getMetrics()->getGoodOperationsWeight());
 
-
-        // @TODO : getRoots
+        // Pdepend metrics
         $this->assertEquals(8, $this->object->getPdependMetrics()->getPackagesCount());
         $this->assertEquals(108, $this->object->getPdependMetrics()->getMethodsCount());
         $this->assertEquals(5, $this->object->getPdependMetrics()->getInterfacesCount());
@@ -133,6 +145,21 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0.41666666666667, $this->object->getPdependMetrics()->getDerivedClassesAvg());
         $this->assertEquals(0.14285714285714, $this->object->getPdependMetrics()->getHierarchyHeightAvg());
         $this->assertEquals(99, $this->object->getPdependMetrics()->getCallsCount());
+
+        // Coverage metrics
+        $this->assertEquals(17, $this->object->getCoverageMetrics()->getFilesCount());
+        $this->assertEquals(1856, $this->object->getCoverageMetrics()->getCodeLinesCount());
+        $this->assertEquals(915, $this->object->getCoverageMetrics()->getNonCommentCodeLinesCount());
+        $this->assertEquals(12, $this->object->getCoverageMetrics()->getClassesCount());
+        $this->assertEquals(82, $this->object->getCoverageMetrics()->getMethodsCount());
+        $this->assertEquals(77, $this->object->getCoverageMetrics()->getCoveredMethodsCount());
+        $this->assertEquals(0, $this->object->getCoverageMetrics()->getConditionnalsCount());
+        $this->assertEquals(0, $this->object->getCoverageMetrics()->getCoveredConditionnalsCount());
+        $this->assertEquals(323, $this->object->getCoverageMetrics()->getStatementsCount());
+        $this->assertEquals(295, $this->object->getCoverageMetrics()->getCoveredStatementsCount());
+        $this->assertEquals(405, $this->object->getCoverageMetrics()->getElementsCount());
+        $this->assertEquals(372, $this->object->getCoverageMetrics()->getCoveredElementsCount());
+
         $this->assertEquals('master', $this->object->getBranch());
     }
 
@@ -182,5 +209,17 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $metrics = new PdependMetrics();
         $this->object->setPdependMetrics($metrics);
         $this->assertEquals($metrics, $this->object->getPdependMetrics());
+    }
+
+    /**
+     * @cover Snide\Scrutinizer\Model\Repository::getCoverageMetrics
+     * @cover Snide\Scrutinizer\Model\Repository::setCoverageMetrics
+     */
+    public function testCoverageMetrics()
+    {
+        $this->assertNull($this->object->getCoverageMetrics());
+        $metrics = new CoverageMetrics();
+        $this->object->setCoverageMetrics($metrics);
+        $this->assertEquals($metrics, $this->object->getCoverageMetrics());
     }
 }

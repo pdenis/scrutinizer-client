@@ -17,14 +17,6 @@ namespace Snide\Scrutinizer\Model;
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-/**
- * Class $this
- * @package Snide\Scrutinizer\Model
- */
-/**
- * Class $this
- * @package Snide\Scrutinizer\Model
- */
 class Metrics
 {
     /**

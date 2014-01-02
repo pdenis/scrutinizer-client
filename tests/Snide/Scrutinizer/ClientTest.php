@@ -35,17 +35,27 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Snide\Scrutinizer\Client::fetch
+     * @covers Snide\Scrutinizer\Client::fetchRepository
      */
-    public function testFetch()
+    public function testFetchRepository()
     {
         $this->object = new Client();
 
         try {
-            $this->object->fetch('pdenis/monitoring', 'u');
+            $this->object->fetchRepository('pdenis/monitoring', 'u');
             $this->fail('Undefined repo type');
-        }catch(\UnexpectedValueException $e) {
+        }catch(\Exception $e) {
+            $this->assertInstanceOf('\UnexpectedValueException', $e);
+        }
 
+        $repo = $this->object->fetchRepository('pdenis/monitoring');
+        $this->assertInstanceOf('Snide\\Scrutinizer\\Model\\Repository', $repo);
+
+        try {
+            $repo = $this->object->fetchRepository('unknown/repo');
+            $this->fail('Undefined repo');
+        }catch(\Exception $e) {
+            $this->assertInstanceOf('\UnexpectedValueException', $e);
         }
     }
 

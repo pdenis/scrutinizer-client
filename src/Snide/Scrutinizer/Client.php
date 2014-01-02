@@ -52,9 +52,10 @@ class Client
      *
      * @param string $slug login/repository format
      * @param string $repoType ("g" or "b")
+     * @return \Snide\Scrutinizer\Model\Repository
      * @throws \UnexpectedValueException
      */
-    public function fetch($slug, $repoType = 'g')
+    public function fetchRepository($slug, $repoType = 'g')
     {
         if (!in_array($repoType, array('g', 'b'))) {
             throw new \UnexpectedValueException(sprintf('Repository type %s is not valid', $repoType));
@@ -62,7 +63,8 @@ class Client
         $repositoryUrl = sprintf('%s/%s/%s/metrics', $this->apiUrl, $repoType, $slug);
         $repository = new Repository();
         $repositoryArray = json_decode($this->browser->get($repositoryUrl)->getContent(), true);
-        if (!$repositoryArray) {
+
+        if (!$repositoryArray || isset($repositoryArray['error'])) {
             throw new \UnexpectedValueException(sprintf('Response is empty for url %s', $repositoryUrl));
         }
 

@@ -32,24 +32,9 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
         $this->object = new Metrics();
     }
 
-    public function testFromArray()
-    {
-
-    }
-
-    public function testOperationsFromArray()
-    {
-
-    }
-
-    public function testClassesFromArray()
-    {
-
-    }
-
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getIssuesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setIssuesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getIssuesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setIssuesCount
      */
     public function testIssuesCount()
     {
@@ -60,8 +45,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getOperationsCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setOperationsCount
      */
     public function testOperationsCount()
     {
@@ -72,8 +57,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getVeryGoodOperationsCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setVeryGoodOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getVeryGoodOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setVeryGoodOperationsCount
      */
     public function testVeryGoodOperationsCount()
     {
@@ -84,8 +69,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getClassesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setClassesCount
      */
     public function testClassesCount()
     {
@@ -96,8 +81,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCriticalClassesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCriticalClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getCriticalClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setCriticalClassesCount
      */
     public function testCriticalClassesCount()
     {
@@ -108,8 +93,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCriticalOperationsCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCriticalOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getCriticalOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setCriticalOperationsCount
      */
     public function testCriticalOperationsCount()
     {
@@ -120,8 +105,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getGoodClassesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setGoodClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getGoodClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setGoodClassesCount
      */
     public function testGoodClassesCount()
     {
@@ -132,8 +117,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getGoodOperationsCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setGoodOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getGoodOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setGoodOperationsCount
      */
     public function testGoodOperationsCount()
     {
@@ -144,8 +129,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getPassClassesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setPassClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getPassClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setPassClassesCount
      */
     public function testPassClassesCount()
     {
@@ -156,8 +141,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getPassOperationsCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setPassOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getPassOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setPassOperationsCount
      */
     public function testPassOperationsCount()
     {
@@ -168,8 +153,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getSatisfactoryClassesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setSatisfactoryClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getSatisfactoryClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setSatisfactoryClassesCount
      */
     public function testSatisfactoryClassesCount()
     {
@@ -180,8 +165,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getSatisfactoryOperationsCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setSatisfactoryOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getSatisfactoryOperationsCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setSatisfactoryOperationsCount
      */
     public function testSatisfactoryOperationsCount()
     {
@@ -192,8 +177,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getVeryGoodClassesCount
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setVeryGoodClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::getVeryGoodClassesCount
+     * @cover Snide\Scrutinizer\Model\Metrics::setVeryGoodClassesCount
      */
     public function testVeryGoodClassesCount()
     {
@@ -204,8 +189,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getQuality
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setQuality
+     * @cover Snide\Scrutinizer\Model\Metrics::getQuality
+     * @cover Snide\Scrutinizer\Model\Metrics::setQuality
      */
     public function testQuality()
     {
@@ -216,8 +201,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getVeryGoodOperationsWeight
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setVeryGoodOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::getVeryGoodOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::setVeryGoodOperationsWeight
      */
     public function testVeryGoodOperationsWeight()
     {
@@ -228,8 +213,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getGoodOperationsWeight
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setGoodOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::getGoodOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::setGoodOperationsWeight
      */
     public function testGoodOperationsWeight()
     {
@@ -240,8 +225,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getSatisfactoryOperationsWeight
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setSatisfactoryOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::getSatisfactoryOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::setSatisfactoryOperationsWeight
      */
     public function testSatisfactoryOperationsWeight()
     {
@@ -252,8 +237,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getPassOperationsWeight
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setPassOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::getPassOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::setPassOperationsWeight
      */
     public function testPassOperationsWeight()
     {
@@ -264,8 +249,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::getCriticalOperationsWeight
-     * @cover Snide\Scrutinizer\Model\Pdepend\Metrics::setCriticalOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::getCriticalOperationsWeight
+     * @cover Snide\Scrutinizer\Model\Metrics::setCriticalOperationsWeight
      */
     public function testCriticalOperationsWeight()
     {
