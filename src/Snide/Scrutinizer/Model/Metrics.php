@@ -158,11 +158,21 @@ class Metrics
         $this->passOperationsCount = $data['scrutinizer.nb_operations.pass'];
         $this->satisfactoryOperationsCount = $data['scrutinizer.nb_operations.satisfactory'];
         $this->criticalOperationsCount = $data['scrutinizer.nb_operations.critical'];
-        $this->criticalOperationsWeight = $data['scrutinizer.operations_weight.critical'];
-        $this->passOperationsWeight = $data['scrutinizer.operations_weight.pass'];
-        $this->goodOperationsWeight = $data['scrutinizer.operations_weight.good'];
-        $this->satisfactoryOperationsWeight = $data['scrutinizer.operations_weight.satisfactory'];
-        $this->veryGoodOperationsWeight = $data['scrutinizer.operations_weight.very_good'];
+        if(isset($data['scrutinizer.weight.critical'])) {
+            $this->criticalOperationsWeight = $data['scrutinizer.weight.critical'];
+            $this->passOperationsWeight = $data['scrutinizer.weight.pass'];
+            $this->goodOperationsWeight = $data['scrutinizer.weight.good'];
+            $this->satisfactoryOperationsWeight = $data['scrutinizer.weight.satisfactory'];
+            $this->veryGoodOperationsWeight = $data['scrutinizer.weight.very_good'];
+
+        }else {
+            $this->criticalOperationsWeight = $data['scrutinizer.operations_weight.critical'];
+            $this->passOperationsWeight = $data['scrutinizer.operations_weight.pass'];
+            $this->goodOperationsWeight = $data['scrutinizer.operations_weight.good'];
+            $this->satisfactoryOperationsWeight = $data['scrutinizer.operations_weight.satisfactory'];
+            $this->veryGoodOperationsWeight = $data['scrutinizer.operations_weight.very_good'];
+        }
+
     }
 
     /**
