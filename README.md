@@ -13,7 +13,7 @@ PHP Client for Scrutinizer API
 
 ### Installation by Composer
 
-If you use composer, add MonitorBundle bundle as a dependency to the composer.json of your application
+If you use composer, add scrutinizer-client library as a dependency to the composer.json of your application
 
 ```php
     "require": {
