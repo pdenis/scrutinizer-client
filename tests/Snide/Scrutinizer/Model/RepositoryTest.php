@@ -11,6 +11,7 @@
 
 namespace Snide\Scrutinizer\Model;
 
+use Snide\Scrutinizer\Hydrator\SimpleHydrator;
 use Snide\Scrutinizer\Model\Metrics;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
@@ -30,135 +31,151 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
     protected $json;
 
     /**
+     * @var SimpleHydrator
+     */
+    protected $hydrator;
+
+    /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
         $this->object = new Repository();
+        $this->hydrator = new SimpleHydrator();
 
         $this->json = '{
             "branch": "master",
             "values": {
-            "pdepend.average_hierarchy_height": 0.14285714285714,
-            "pdepend.average_number_of_derived_classes": 0.41666666666667,
-            "pdepend.calls": 99,
-            "pdepend.cyclomatic_complexity_number": 132,
-            "pdepend.extended_cyclomatic_complexity_number": 136,
-            "pdepend.comment_lines_of_code": 776,
-            "pdepend.number_of_abstract_classes": 1,
-            "pdepend.number_of_concrete_classes": 11,
-            "pdepend.executable_lines_of_code": 697,
-            "pdepend.number_of_referenced_classes": 30,
-            "pdepend.number_of_leaf_classes": 11,
-            "pdepend.logical_lines_of_code": 421,
-            "pdepend.lines_of_code": 1693,
-            "pdepend.maximum_depth_of_inheritance_tree": 1,
-            "pdepend.non_comment_lines_of_code": 917,
-            "pdepend.number_of_classes": 12,
-            "pdepend.number_of_functions": 0,
-            "pdepend.number_of_interfaces": 5,
-            "pdepend.number_of_methods": 108,
-            "pdepend.number_of_packages": 8,
-            "pdepend.roots": 1,
-            "scrutinizer.nb_operations": 51,
-            "scrutinizer.nb_operations.very_good": 50,
-            "scrutinizer.nb_operations.good": 1,
-            "scrutinizer.nb_operations.satisfactory": 0,
-            "scrutinizer.weight.satisfactory": 0,
-            "scrutinizer.nb_operations.pass": 0,
-            "scrutinizer.weight.pass": 0,
-            "scrutinizer.nb_operations.critical": 0,
-            "scrutinizer.weight.critical": 0,
-            "scrutinizer.nb_classes": 12,
-            "scrutinizer.nb_classes.very_good": 12,
-            "scrutinizer.nb_classes.good": 0,
-            "scrutinizer.nb_classes.satisfactory": 0,
-            "scrutinizer.nb_classes.pass": 0,
-            "scrutinizer.nb_classes.critical": 0,
-            "scrutinizer.nb_issues": 2,
-            "scrutinizer.nb_ignored_issues": 0,
-            "scrutinizer.quality": 9.1779459838953,
-            "scrutinizer.weight.very_good": 6.11,
-            "scrutinizer.weight.good": 0.23,
-            "php_code_coverage.files": 17,
-            "php_code_coverage.lines_of_code": 1856,
-            "php_code_coverage.non_comment_lines_of_code": 915,
-            "php_code_coverage.classes": 12,
-            "php_code_coverage.methods": 82,
-            "php_code_coverage.covered_methods": 77,
-            "php_code_coverage.conditionals": 0,
-            "php_code_coverage.covered_conditionals": 0,
-            "php_code_coverage.statements": 323,
-            "php_code_coverage.covered_statements": 295,
-            "php_code_coverage.elements": 405,
-            "php_code_coverage.covered_elements": 372
+                "php_code_coverage.files": 6,
+                "php_code_coverage.lines_of_code": 422,
+                "php_code_coverage.non_comment_lines_of_code": 237,
+                "php_code_coverage.classes": 6,
+                "php_code_coverage.methods": 16,
+                "php_code_coverage.covered_methods": 14,
+                "php_code_coverage.conditionals": 0,
+                "php_code_coverage.covered_conditionals": 0,
+                "php_code_coverage.statements": 91,
+                "php_code_coverage.covered_statements": 85,
+                "php_code_coverage.elements": 107,
+                "php_code_coverage.covered_elements": 99,
+                "pdepend.average_hierarchy_height": 2,
+                "pdepend.average_number_of_derived_classes": 0.83333333333333,
+                "pdepend.calls": 32,
+                "pdepend.cyclomatic_complexity_number": 31,
+                "pdepend.extended_cyclomatic_complexity_number": 31,
+                "pdepend.comment_lines_of_code": 183,
+                "pdepend.number_of_abstract_classes": 2,
+                "pdepend.number_of_concrete_classes": 4,
+                "pdepend.executable_lines_of_code": 192,
+                "pdepend.number_of_referenced_classes": 3,
+                "pdepend.number_of_leaf_classes": 4,
+                "pdepend.logical_lines_of_code": 91,
+                "pdepend.lines_of_code": 428,
+                "pdepend.maximum_depth_of_inheritance_tree": 2,
+                "pdepend.non_comment_lines_of_code": 245,
+                "pdepend.number_of_classes": 6,
+                "pdepend.number_of_functions": 0,
+                "pdepend.number_of_interfaces": 0,
+                "pdepend.number_of_methods": 16,
+                "pdepend.number_of_packages": 2,
+                "pdepend.roots": 1,
+                "scrutinizer.test_coverage": 0.93406593406593,
+                "scrutinizer.quality": 10,
+                "scrutinizer.nb_elements": 22,
+                "scrutinizer.nb_classes": 6,
+                "scrutinizer.nb_classes.very_good": 6,
+                "scrutinizer.nb_classes.good": 0,
+                "scrutinizer.nb_classes.satisfactory": 0,
+                "scrutinizer.nb_classes.pass": 0,
+                "scrutinizer.nb_classes.critical": 0,
+                "scrutinizer.nb_operations": 16,
+                "scrutinizer.nb_operations.very_good": 16,
+                "scrutinizer.nb_operations.good": 0,
+                "scrutinizer.nb_operations.satisfactory": 0,
+                "scrutinizer.nb_operations.pass": 0,
+                "scrutinizer.nb_operations.critical": 0,
+                "scrutinizer.weight.very_good": 77.2,
+                "scrutinizer.weight.good": 0,
+                "scrutinizer.weight.satisfactory": 0,
+                "scrutinizer.weight.pass": 0,
+                "scrutinizer.weight.critical": 0,
+                "scrutinizer.nb_issues": 8,
+                "scrutinizer.nb_ignored_issues": 0
             }
         }';
     }
 
-    /**
-     * @cover Snide\Scrutinizer\Model\Repository::fromArray
-     * @cover Snide\Scrutinizer\Model\Repository::metricsFromArray
-     */
-    public function testFromArray()
+    public function testLoad()
     {
-        $this->object->fromArray(json_decode($this->json, true));
+        $data = json_decode($this->json, true);
+        $this->object = $this->hydrator->hydrate($this->object, $data['values'], 'scrutinizer');
+        $this->object->setCoverageMetrics($this->hydrator->hydrate(new CoverageMetrics(), $data['values'], 'php_code_coverage'));
+        $this->object->setPdependMetrics($this->hydrator->hydrate(new PdependMetrics(), $data['values'], 'pdepend'));
+        $this->object->setMetrics($this->hydrator->hydrate(new Metrics(), $data['values'], 'scrutinizer'));
+        $this->object->setBranch($data['branch']);
+        $this->assertEquals(22, $this->object->getMetrics()->getNbElements());
+        $this->assertEquals(10, $this->object->getMetrics()->getQuality());
+        $this->assertEquals(0.93406593406593, $this->object->getMetrics()->getTestCoverage());
+        $this->assertEquals(16, $this->object->getMetrics()->getNbOperations());
+        $this->assertEquals(16, $this->object->getMetrics()->getNbOperationsVeryGood());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsGood());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsSatisfactory());
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightSatisfactory());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsPass());
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightPass());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsCritical());
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightCritical());
+        $this->assertEquals(6, $this->object->getMetrics()->getNbClasses());
+        $this->assertEquals(6, $this->object->getMetrics()->getNbClassesVeryGood());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbClassesPass());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbClassesSatisfactory());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbClassesCritical());
+        $this->assertEquals(8, $this->object->getMetrics()->getNbIssues());
+        $this->assertEquals(0, $this->object->getMetrics()->getNbIgnoredIssues());
+        $this->assertEquals(77.2, $this->object->getMetrics()->getWeightVeryGood());
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightGood());
 
-        $this->assertEquals(51, $this->object->getMetrics()->getOperationsCount());
-        $this->assertEquals(50, $this->object->getMetrics()->getVeryGoodOperationsCount());
-        $this->assertEquals(1, $this->object->getMetrics()->getGoodOperationsCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getSatisfactoryOperationsCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getSatisfactoryOperationsWeight());
-        $this->assertEquals(0, $this->object->getMetrics()->getPassOperationsCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getPassOperationsWeight());
-        $this->assertEquals(0, $this->object->getMetrics()->getCriticalOperationsCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getCriticalOperationsWeight());
-        $this->assertEquals(12, $this->object->getMetrics()->getClassesCount());
-        $this->assertEquals(12, $this->object->getMetrics()->getVeryGoodClassesCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getPassClassesCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getSatisfactoryClassesCount());
-        $this->assertEquals(0, $this->object->getMetrics()->getCriticalClassesCount());
-        $this->assertEquals(2, $this->object->getMetrics()->getIssuesCount());
-        $this->assertEquals(9.1779459838953, $this->object->getMetrics()->getQuality());
-        $this->assertEquals(6.11, $this->object->getMetrics()->getVeryGoodOperationsWeight());
-        $this->assertEquals(0.23, $this->object->getMetrics()->getGoodOperationsWeight());
+
 
         // Pdepend metrics
-        $this->assertEquals(8, $this->object->getPdependMetrics()->getPackagesCount());
-        $this->assertEquals(108, $this->object->getPdependMetrics()->getMethodsCount());
-        $this->assertEquals(5, $this->object->getPdependMetrics()->getInterfacesCount());
-        $this->assertEquals(0, $this->object->getPdependMetrics()->getFunctionsCount());
-        $this->assertEquals(12, $this->object->getPdependMetrics()->getClassesCount());
-        $this->assertEquals(917, $this->object->getPdependMetrics()->getNonCommentCodeLinesCount());
-        $this->assertEquals(1, $this->object->getPdependMetrics()->getMaxInheritanceDepth());
-        $this->assertEquals(1693, $this->object->getPdependMetrics()->getCodeLinesCount());
-        $this->assertEquals(421, $this->object->getPdependMetrics()->getLogicalCodeLinesCount());
-        $this->assertEquals(11, $this->object->getPdependMetrics()->getLeafClassesCount()); // Rename //getLeaf
-        $this->assertEquals(30, $this->object->getPdependMetrics()->getReferencedClassesCount());
-        $this->assertEquals(697, $this->object->getPdependMetrics()->getExecutableCodeLinesCount());
-        $this->assertEquals(11, $this->object->getPdependMetrics()->getConcreteClassesCount());
-        $this->assertEquals(1, $this->object->getPdependMetrics()->getAbstractClassesCount());
-        $this->assertEquals(776, $this->object->getPdependMetrics()->getCommentCodeLinesCount());
-        $this->assertEquals(136, $this->object->getPdependMetrics()->getExtendedCyclomaticCount());
-        $this->assertEquals(132, $this->object->getPdependMetrics()->getCyclomaticCount());
-        $this->assertEquals(0.41666666666667, $this->object->getPdependMetrics()->getDerivedClassesAvg());
-        $this->assertEquals(0.14285714285714, $this->object->getPdependMetrics()->getHierarchyHeightAvg());
-        $this->assertEquals(99, $this->object->getPdependMetrics()->getCallsCount());
+        $this->assertEquals(6, $this->object->getPdependMetrics()->getNumberOfClasses());
+        $this->assertEquals(0, $this->object->getPdependMetrics()->getNumberOfFunctions());
+        $this->assertEquals(0, $this->object->getPdependMetrics()->getNumberOfInterfaces());
+        $this->assertEquals(16, $this->object->getPdependMetrics()->getNumberOfMethods());
+        $this->assertEquals(2, $this->object->getPdependMetrics()->getNumberOfPackages());
+        $this->assertEquals(1, $this->object->getPdependMetrics()->getRoots());
+
+        $this->assertEquals(2, $this->object->getPdependMetrics()->getMaximumDepthOfInheritanceTree());
+        $this->assertEquals(428, $this->object->getPdependMetrics()->getLinesOfCode());
+        $this->assertEquals(91, $this->object->getPdependMetrics()->getLogicalLinesOfCode());
+        $this->assertEquals(4, $this->object->getPdependMetrics()->getNumberOfLeafClasses()); // Rename //getLeaf
+        $this->assertEquals(3, $this->object->getPdependMetrics()->getNumberOfReferencedClasses());
+        $this->assertEquals(192, $this->object->getPdependMetrics()->getExecutableLinesOfCode());
+        $this->assertEquals(4, $this->object->getPdependMetrics()->getNumberOfConcreteClasses());
+        $this->assertEquals(2, $this->object->getPdependMetrics()->getNumberOfAbstractClasses());
+        $this->assertEquals(31, $this->object->getPdependMetrics()->getExtendedCyclomaticComplexityNumber());
+        $this->assertEquals(31, $this->object->getPdependMetrics()->getCyclomaticComplexityNumber());
+        $this->assertEquals(0.83333333333333, $this->object->getPdependMetrics()->getAverageNumberOfDerivedClasses());
+        $this->assertEquals(2, $this->object->getPdependMetrics()->getAverageHierarchyHeight());
+        $this->assertEquals(32, $this->object->getPdependMetrics()->getCalls());
+        $this->assertEquals(183, $this->object->getPdependMetrics()->getCommentLinesOfCode());
+        $this->assertEquals(245, $this->object->getPdependMetrics()->getNonCommentLinesOfCode());
+
 
         // Coverage metrics
-        $this->assertEquals(17, $this->object->getCoverageMetrics()->getFilesCount());
-        $this->assertEquals(1856, $this->object->getCoverageMetrics()->getCodeLinesCount());
-        $this->assertEquals(915, $this->object->getCoverageMetrics()->getNonCommentCodeLinesCount());
-        $this->assertEquals(12, $this->object->getCoverageMetrics()->getClassesCount());
-        $this->assertEquals(82, $this->object->getCoverageMetrics()->getMethodsCount());
-        $this->assertEquals(77, $this->object->getCoverageMetrics()->getCoveredMethodsCount());
-        $this->assertEquals(0, $this->object->getCoverageMetrics()->getConditionnalsCount());
-        $this->assertEquals(0, $this->object->getCoverageMetrics()->getCoveredConditionnalsCount());
-        $this->assertEquals(323, $this->object->getCoverageMetrics()->getStatementsCount());
-        $this->assertEquals(295, $this->object->getCoverageMetrics()->getCoveredStatementsCount());
-        $this->assertEquals(405, $this->object->getCoverageMetrics()->getElementsCount());
-        $this->assertEquals(372, $this->object->getCoverageMetrics()->getCoveredElementsCount());
+        $this->assertEquals(6, $this->object->getCoverageMetrics()->getFiles());
+        $this->assertEquals(422, $this->object->getCoverageMetrics()->getLinesOfCode());
+        $this->assertEquals(237, $this->object->getCoverageMetrics()->getNonCommentLinesOfCode());
+        $this->assertEquals(6, $this->object->getCoverageMetrics()->getClasses());
+        $this->assertEquals(16, $this->object->getCoverageMetrics()->getMethods());
+        $this->assertEquals(14, $this->object->getCoverageMetrics()->getCoveredMethods());
+        $this->assertEquals(0, $this->object->getCoverageMetrics()->getConditionals());
+        $this->assertEquals(0, $this->object->getCoverageMetrics()->getCoveredConditionals());
+        $this->assertEquals(91, $this->object->getCoverageMetrics()->getStatements());
+        $this->assertEquals(85, $this->object->getCoverageMetrics()->getCoveredStatements());
+        $this->assertEquals(107, $this->object->getCoverageMetrics()->getElements());
+        $this->assertEquals(99, $this->object->getCoverageMetrics()->getCoveredElements());
 
         $this->assertEquals('master', $this->object->getBranch());
     }

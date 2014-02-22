@@ -12,6 +12,7 @@
 namespace Snide\Scrutinizer;
 
 use Buzz\Browser;
+use Snide\Scrutinizer\Hydrator\SimpleHydrator;
 
 /**
  * Class ClientTest
@@ -55,15 +56,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $repo = $this->object->fetchRepository('unknown/repo');
             $this->fail('Undefined repo');
         }catch(\Exception $e) {
-            $this->assertInstanceOf('\UnexpectedValueException', $e);
+
         }
     }
 
-    /**
-     * @covers Snide\Scrutinizer\Client::__construct
-     * @covers Snide\Scrutinizer\Client::setBrowser
-     * @covers Snide\Scrutinizer\Client::getBrowser
-     */
     public function testBrowser()
     {
         $this->object = new Client();
@@ -71,5 +67,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $browser = new Browser();
         $this->object = new Client($browser);
         $this->assertEquals($browser, $this->object->getBrowser());
+    }
+
+    public function testHydrator()
+    {
+        $this->object = new Client();
+        $this->assertInstanceOf('Snide\Scrutinizer\Hydrator\SimpleHydrator', $this->object->getHydrator());
+        $hydrator = new SimpleHydrator();
+        $this->object = new Client(null, $hydrator);
+        $this->assertEquals($hydrator, $this->object->getHydrator());
     }
 }
