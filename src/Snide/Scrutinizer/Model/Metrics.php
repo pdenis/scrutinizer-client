@@ -20,201 +20,360 @@ namespace Snide\Scrutinizer\Model;
 class Metrics
 {
     /**
-     * Operations count
-     * 
-     * @var int
-     */
-    protected $operationsCount;
-    /**
-     * Very good operations count
-     * 
-     * @var int
-     */
-    protected $veryGoodOperationsCount;
-    /**
-     * Good operations count
-     * 
-     * @var int
-     */
-    protected $goodOperationsCount;
-    /**
-     * Satisfactory operations count
-     * 
-     * @var int
-     */
-    protected $satisfactoryOperationsCount;
-    /**
-     * Pass operations count
-     * 
-     * @var int
-     */
-    protected $passOperationsCount;
-    /**
-     * Critical operations count
-     * 
-     * @var int
-     */
-    protected $criticalOperationsCount;
-    /**
-     * Classes count
-     * 
-     * @var int
-     */
-    protected $classesCount;
-    /**
-     * Very good classes count
+     * test coverage indicator
      *
-     * @var int
+     * @var float
      */
-    protected $veryGoodClassesCount;
+    protected $testCoverage;
+
     /**
-     * Good classes count
-     *
-     * @var int
-     */
-    protected $goodClassesCount;
-    /**
-     * Satisfactory classes count
-     *
-     * @var int
-     */
-    protected $satisfactoryClassesCount;
-    /**
-     * Pass classes count
-     *
-     * @var int
-     */
-    protected $passClassesCount;
-    /**
-     * Critical classes count
-     *
-     * @var int
-     */
-    protected $criticalClassesCount;
-    /**
-     * Quality rating
+     * Quality indicator
      *
      * @var float
      */
     protected $quality;
+
     /**
-     * Very good operations weight
-     *
-     * @var float
-     */
-    protected $veryGoodOperationsWeight;
-    /**
-     * Good operations weight
-     *
-     * @var float
-     */
-    protected $goodOperationsWeight;
-    /**
-     * Satisfactory operations weight
-     *
-     * @var float
-     */
-    protected $satisfactoryOperationsWeight;
-    /**
-     * Pass operations weight
-     *
-     * @var float
-     */
-    protected $passOperationsWeight;
-    /**
-     * Critical operations weight
-     *
-     * @var float
-     */
-    protected $criticalOperationsWeight;
-    /**
-     * Issues count
-     *
      * @var int
      */
-    protected $issuesCount;
+    protected $nbElements;
 
     /**
-     * Inject data from array
-     *
-     * @param array $data
+     * @var int
      */
-    public function fromArray($data = array())
+    protected $nbClasses;
+
+    /**
+     * @var int
+     */
+    protected $nbClassesVeryGood;
+
+    /**
+     * @var int
+     */
+    protected $nbClassesGood;
+
+    /**
+     * @var int
+     */
+    protected $nbClassesSatisfactory;
+
+    /**
+     * @var int
+     */
+    protected $nbClassesPass;
+
+    /**
+     * @var int
+     */
+    protected $nbClassesCritical;
+
+    /**
+     * @var int
+     */
+    protected $nbOperations;
+
+    /**
+     * @var int
+     */
+    protected $nbOperationsVeryGood;
+
+    /**
+     * @var int
+     */
+    protected $nbOperationsGood;
+
+    /**
+     * @var int
+     */
+    protected $nbOperationsSatisfactory;
+
+    /**
+     * @var int
+     */
+    protected $nbOperationsPass;
+
+    /**
+     * @var int
+     */
+    protected $nbOperationsCritical;
+
+    /**
+     * @var float
+     */
+    protected $weightVeryGood;
+
+    /**
+     * @var float
+     */
+    protected $weightGood;
+
+    /**
+     * @var float
+     */
+    protected $weightSatisfactory;
+
+    /**
+     * @var float
+     */
+    protected $weightPass;
+
+    /**
+     * @var float
+     */
+    protected $weightCritical;
+
+    /**
+     * @var int
+     */
+    protected $nbIssues;
+
+    /**
+     * @var int
+     */
+    protected $nbIgnoredIssues ;
+
+    /**
+     * @param int $nbClasses
+     */
+    public function setNbClasses($nbClasses)
     {
-        $this->operationsFromArray($data);
-        $this->classesFromArray($data);
+        $this->nbClasses = $nbClasses;
     }
 
     /**
-     * Injection operations values from array
-     *
-     * @param array $data
-     */
-    protected function operationsFromArray($data = array())
-    {
-        $this->operationsCount = $data['scrutinizer.nb_operations'];
-        $this->veryGoodOperationsCount = $data['scrutinizer.nb_operations.very_good'];
-        $this->goodOperationsCount = $data['scrutinizer.nb_operations.good'];
-        $this->passOperationsCount = $data['scrutinizer.nb_operations.pass'];
-        $this->satisfactoryOperationsCount = $data['scrutinizer.nb_operations.satisfactory'];
-        $this->criticalOperationsCount = $data['scrutinizer.nb_operations.critical'];
-        if(isset($data['scrutinizer.weight.critical'])) {
-            $this->criticalOperationsWeight = $data['scrutinizer.weight.critical'];
-            $this->passOperationsWeight = $data['scrutinizer.weight.pass'];
-            $this->goodOperationsWeight = $data['scrutinizer.weight.good'];
-            $this->satisfactoryOperationsWeight = $data['scrutinizer.weight.satisfactory'];
-            $this->veryGoodOperationsWeight = $data['scrutinizer.weight.very_good'];
-
-        }else {
-            $this->criticalOperationsWeight = $data['scrutinizer.operations_weight.critical'];
-            $this->passOperationsWeight = $data['scrutinizer.operations_weight.pass'];
-            $this->goodOperationsWeight = $data['scrutinizer.operations_weight.good'];
-            $this->satisfactoryOperationsWeight = $data['scrutinizer.operations_weight.satisfactory'];
-            $this->veryGoodOperationsWeight = $data['scrutinizer.operations_weight.very_good'];
-        }
-
-    }
-
-    /**
-     * Inject classes values from array
-     *
-     * @param array $data
-     */
-    protected function classesFromArray($data = array())
-    {
-        $this->criticalClassesCount = $data['scrutinizer.nb_classes.critical'];
-        $this->passClassesCount = $data['scrutinizer.nb_classes.pass'];
-        $this->satisfactoryClassesCount = $data['scrutinizer.nb_classes.satisfactory'];
-        $this->goodClassesCount = $data['scrutinizer.nb_classes.good'];
-        $this->classesCount = $data['scrutinizer.nb_classes'];
-        $this->veryGoodClassesCount = $data['scrutinizer.nb_classes.very_good'];
-        $this->quality = $data['scrutinizer.quality'];
-        $this->issuesCount = $data['scrutinizer.nb_issues'];
-    }
-
-    /**
-     * Getter issuesCount
-     *
      * @return int
      */
-    public function getIssuesCount()
+    public function getNbClasses()
     {
-        return $this->issuesCount;
+        return $this->nbClasses;
     }
 
     /**
-     * Setter issuesCount
-     *
-     * @param $issuesCount
+     * @param int $nbClassesCritical
      */
-    public function setIssuesCount($issuesCount)
+    public function setNbClassesCritical($nbClassesCritical)
     {
-        $this->issuesCount = $issuesCount;
+        $this->nbClassesCritical = $nbClassesCritical;
     }
 
     /**
-     * Setter quality
-     *
+     * @return int
+     */
+    public function getNbClassesCritical()
+    {
+        return $this->nbClassesCritical;
+    }
+
+    /**
+     * @param int $nbClassesGood
+     */
+    public function setNbClassesGood($nbClassesGood)
+    {
+        $this->nbClassesGood = $nbClassesGood;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbClassesGood()
+    {
+        return $this->nbClassesGood;
+    }
+
+    /**
+     * @param int $nbClassesPass
+     */
+    public function setNbClassesPass($nbClassesPass)
+    {
+        $this->nbClassesPass = $nbClassesPass;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbClassesPass()
+    {
+        return $this->nbClassesPass;
+    }
+
+    /**
+     * @param int $nbClassesSatisfactory
+     */
+    public function setNbClassesSatisfactory($nbClassesSatisfactory)
+    {
+        $this->nbClassesSatisfactory = $nbClassesSatisfactory;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbClassesSatisfactory()
+    {
+        return $this->nbClassesSatisfactory;
+    }
+
+    /**
+     * @param int $nbClassesVeryGood
+     */
+    public function setNbClassesVeryGood($nbClassesVeryGood)
+    {
+        $this->nbClassesVeryGood = $nbClassesVeryGood;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbClassesVeryGood()
+    {
+        return $this->nbClassesVeryGood;
+    }
+
+    /**
+     * @param int $nbElements
+     */
+    public function setNbElements($nbElements)
+    {
+        $this->nbElements = $nbElements;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbElements()
+    {
+        return $this->nbElements;
+    }
+
+    /**
+     * @param int $nbIgnoredIssues
+     */
+    public function setNbIgnoredIssues($nbIgnoredIssues)
+    {
+        $this->nbIgnoredIssues = $nbIgnoredIssues;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbIgnoredIssues()
+    {
+        return $this->nbIgnoredIssues;
+    }
+
+    /**
+     * @param int $nbIssues
+     */
+    public function setNbIssues($nbIssues)
+    {
+        $this->nbIssues = $nbIssues;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbIssues()
+    {
+        return $this->nbIssues;
+    }
+
+    /**
+     * @param int $nbOperations
+     */
+    public function setNbOperations($nbOperations)
+    {
+        $this->nbOperations = $nbOperations;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOperations()
+    {
+        return $this->nbOperations;
+    }
+
+    /**
+     * @param int $nbOperationsCritical
+     */
+    public function setNbOperationsCritical($nbOperationsCritical)
+    {
+        $this->nbOperationsCritical = $nbOperationsCritical;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOperationsCritical()
+    {
+        return $this->nbOperationsCritical;
+    }
+
+    /**
+     * @param int $nbOperationsGood
+     */
+    public function setNbOperationsGood($nbOperationsGood)
+    {
+        $this->nbOperationsGood = $nbOperationsGood;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOperationsGood()
+    {
+        return $this->nbOperationsGood;
+    }
+
+    /**
+     * @param int $nbOperationsPass
+     */
+    public function setNbOperationsPass($nbOperationsPass)
+    {
+        $this->nbOperationsPass = $nbOperationsPass;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOperationsPass()
+    {
+        return $this->nbOperationsPass;
+    }
+
+    /**
+     * @param int $nbOperationsSatisfactory
+     */
+    public function setNbOperationsSatisfactory($nbOperationsSatisfactory)
+    {
+        $this->nbOperationsSatisfactory = $nbOperationsSatisfactory;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOperationsSatisfactory()
+    {
+        return $this->nbOperationsSatisfactory;
+    }
+
+    /**
+     * @param int $nbOperationsVeryGood
+     */
+    public function setNbOperationsVeryGood($nbOperationsVeryGood)
+    {
+        $this->nbOperationsVeryGood = $nbOperationsVeryGood;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOperationsVeryGood()
+    {
+        return $this->nbOperationsVeryGood;
+    }
+
+    /**
      * @param float $quality
      */
     public function setQuality($quality)
@@ -223,248 +382,6 @@ class Metrics
     }
 
     /**
-     * Operations count
-     *
-     * @return int
-     */
-    public function getOperationsCount()
-    {
-        return $this->operationsCount;
-    }
-
-    /**
-     * Getter very good operations count
-     *
-     * @return int
-     */
-    public function getVeryGoodOperationsCount()
-    {
-        return $this->veryGoodOperationsCount;
-    }
-
-    /**
-     * Setter classesCount
-     *
-     * @param int $classesCount
-     */
-    public function setClassesCount($classesCount)
-    {
-        $this->classesCount = $classesCount;
-    }
-
-    /**
-     * Getter classesCount
-     *
-     * @return int
-     */
-    public function getClassesCount()
-    {
-        return $this->classesCount;
-    }
-
-    /**
-     * Setter operationsCount
-     *
-     * @param int $operationsCount
-     */
-    public function setOperationsCount($operationsCount)
-    {
-        $this->operationsCount = $operationsCount;
-    }
-
-    /**
-     * Setter criticalClassesCount
-     *
-     * @param int $criticalClassesCount
-     */
-    public function setCriticalClassesCount($criticalClassesCount)
-    {
-        $this->criticalClassesCount = $criticalClassesCount;
-    }
-
-    /**
-     * Getter criticalClassesCount
-     *
-     * @return int
-     */
-    public function getCriticalClassesCount()
-    {
-        return $this->criticalClassesCount;
-    }
-
-    /**
-     * Setter criticalOperationsCount
-     *
-     * @param int $criticalOperationsCount
-     */
-    public function setCriticalOperationsCount($criticalOperationsCount)
-    {
-        $this->criticalOperationsCount = $criticalOperationsCount;
-    }
-
-    /**
-     * Getter criticalOperationsCount
-     *
-     * @return int
-     */
-    public function getCriticalOperationsCount()
-    {
-        return $this->criticalOperationsCount;
-    }
-
-    /**
-     * Setter goodClassesCount
-     *
-     * @param int $goodClassesCount
-     */
-    public function setGoodClassesCount($goodClassesCount)
-    {
-        $this->goodClassesCount = $goodClassesCount;
-    }
-
-    /**
-     * Getter goodClassesCount
-     *
-     * @return int
-     */
-    public function getGoodClassesCount()
-    {
-        return $this->goodClassesCount;
-    }
-
-    /**
-     * Setter goodOperationsCount
-     *
-     * @param int $goodOperationsCount
-     */
-    public function setGoodOperationsCount($goodOperationsCount)
-    {
-        $this->goodOperationsCount = $goodOperationsCount;
-    }
-
-    /**
-     * Getter goodOperationsCount
-     *
-     * @return int
-     */
-    public function getGoodOperationsCount()
-    {
-        return $this->goodOperationsCount;
-    }
-
-    /**
-     * Setter passOperationsCount
-     *
-     * @param int $passClassesCount
-     */
-    public function setPassClassesCount($passClassesCount)
-    {
-        $this->passClassesCount = $passClassesCount;
-    }
-
-    /**
-     * Getter passClassesCount
-     *
-     * @return int
-     */
-    public function getPassClassesCount()
-    {
-        return $this->passClassesCount;
-    }
-
-    /**
-     * Setter passOperationsCount
-     *
-     * @param int $passOperationsCount
-     */
-    public function setPassOperationsCount($passOperationsCount)
-    {
-        $this->passOperationsCount = $passOperationsCount;
-    }
-
-    /**
-     * Getter passOperationsCount
-     *
-     * @return int
-     */
-    public function getPassOperationsCount()
-    {
-        return $this->passOperationsCount;
-    }
-
-    /**
-     * Setter satisfactoryClassesCount
-     *
-     * @param int $satisfactoryClassesCount
-     */
-    public function setSatisfactoryClassesCount($satisfactoryClassesCount)
-    {
-        $this->satisfactoryClassesCount = $satisfactoryClassesCount;
-    }
-
-    /**
-     * Getter satisfactoryClassesCount
-     *
-     * @return int
-     */
-    public function getSatisfactoryClassesCount()
-    {
-        return $this->satisfactoryClassesCount;
-    }
-
-    /**
-     * Setter satisfactoryOperationsCount
-     *
-     * @param int $satisfactoryOperationsCount
-     */
-    public function setSatisfactoryOperationsCount($satisfactoryOperationsCount)
-    {
-        $this->satisfactoryOperationsCount = $satisfactoryOperationsCount;
-    }
-
-    /**
-     * Getter satisfactoryOperationsCount
-     *
-     * @return int
-     */
-    public function getSatisfactoryOperationsCount()
-    {
-        return $this->satisfactoryOperationsCount;
-    }
-
-    /**
-     * Setter veryGoodClassesCount
-     *
-     * @param int $veryGoodClassesCount
-     */
-    public function setVeryGoodClassesCount($veryGoodClassesCount)
-    {
-        $this->veryGoodClassesCount = $veryGoodClassesCount;
-    }
-
-    /**
-     * Getter veryGoodClassesCount
-     *
-     * @return int
-     */
-    public function getVeryGoodClassesCount()
-    {
-        return $this->veryGoodClassesCount;
-    }
-
-    /**
-     * Setter veryGoodOperationsCount
-     *
-     * @param int $veryGoodOperationsCount
-     */
-    public function setVeryGoodOperationsCount($veryGoodOperationsCount)
-    {
-        $this->veryGoodOperationsCount = $veryGoodOperationsCount;
-    }
-
-    /**
-     * Getter quality rating
-     *
      * @return float
      */
     public function getQuality()
@@ -473,118 +390,99 @@ class Metrics
     }
 
     /**
-     * Getter very good operations weight
-     *
+     * @param float $testCoverage
+     */
+    public function setTestCoverage($testCoverage)
+    {
+        $this->testCoverage = $testCoverage;
+    }
+
+    /**
      * @return float
      */
-    public function getVeryGoodOperationsWeight()
+    public function getTestCoverage()
     {
-        return $this->veryGoodOperationsWeight;
+        return $this->testCoverage;
     }
 
     /**
-     * Getter good operations weight
-     *
+     * @param float $weightCritical
+     */
+    public function setWeightCritical($weightCritical)
+    {
+        $this->weightCritical = $weightCritical;
+    }
+
+    /**
      * @return float
      */
-    public function getGoodOperationsWeight()
+    public function getWeightCritical()
     {
-        return $this->goodOperationsWeight;
+        return $this->weightCritical;
     }
 
     /**
-     * Getter satisfactory operations weight
-     *
+     * @param float $weightGood
+     */
+    public function setWeightGood($weightGood)
+    {
+        $this->weightGood = $weightGood;
+    }
+
+    /**
      * @return float
      */
-    public function getSatisfactoryOperationsWeight()
+    public function getWeightGood()
     {
-        return $this->satisfactoryOperationsWeight;
+        return $this->weightGood;
     }
 
     /**
-     * Getter pass operations weight
-     *
+     * @param float $weightPass
+     */
+    public function setWeightPass($weightPass)
+    {
+        $this->weightPass = $weightPass;
+    }
+
+    /**
      * @return float
      */
-    public function getPassOperationsWeight()
+    public function getWeightPass()
     {
-        return $this->passOperationsWeight;
+        return $this->weightPass;
     }
 
     /**
-     * Getter critical operations weight
-     *
+     * @param float $weightSatisfactory
+     */
+    public function setWeightSatisfactory($weightSatisfactory)
+    {
+        $this->weightSatisfactory = $weightSatisfactory;
+    }
+
+    /**
      * @return float
      */
-    public function getCriticalOperationsWeight()
+    public function getWeightSatisfactory()
     {
-        return $this->criticalOperationsWeight;
+        return $this->weightSatisfactory;
     }
 
     /**
-     * Setter critical operations weight
-     *
-     * @param float $criticalOperationsWeight
-     * @return $this
+     * @param float $weightVeryGood
      */
-    public function setCriticalOperationsWeight($criticalOperationsWeight)
+    public function setWeightVeryGood($weightVeryGood)
     {
-        $this->criticalOperationsWeight = $criticalOperationsWeight;
-
-        return $this;
+        $this->weightVeryGood = $weightVeryGood;
     }
 
     /**
-     * Setter good operations weight
-     *
-     * @param float $goodOperationsWeight
-     * @return $this
+     * @return float
      */
-    public function setGoodOperationsWeight($goodOperationsWeight)
+    public function getWeightVeryGood()
     {
-        $this->goodOperationsWeight = $goodOperationsWeight;
-
-        return $this;
+        return $this->weightVeryGood;
     }
 
-
-    /**
-     * Setter pass operations weight
-     *
-     * @param float $passOperationsWeight
-     * @return $this
-     */
-    public function setPassOperationsWeight($passOperationsWeight)
-    {
-        $this->passOperationsWeight = $passOperationsWeight;
-
-        return $this;
-    }
-
-    /**
-     * Setter satisfactory operations weight
-     *
-     * @param float $satisfactoryOperationsWeight
-     * @return $this
-     */
-    public function setSatisfactoryOperationsWeight($satisfactoryOperationsWeight)
-    {
-        $this->satisfactoryOperationsWeight = $satisfactoryOperationsWeight;
-
-        return $this;
-    }
-
-    /**
-     * Setter very good operations weight
-     * 
-     * @param float $veryGoodOperationsWeight
-     * @return $this
-     */
-    public function setVeryGoodOperationsWeight($veryGoodOperationsWeight)
-    {
-        $this->veryGoodOperationsWeight = $veryGoodOperationsWeight;
-        
-        return $this;
-    }
 }

@@ -19,516 +19,444 @@ namespace Snide\Scrutinizer\Model\Pdepend;
 class Metrics
 {
     /**
-     * @var int
+     * @var float
      */
-    protected $packagesCount;
-    /**
-     * @var int
-     */
-    protected $methodsCount;
-    /**
-     * @var int
-     */
-    protected $interfacesCount;
-    /**
-     * @var int
-     */
-    protected $functionsCount;
-    /**
-     * @var int
-     */
-    protected $classesCount;
-    /**
-     * @var int
-     */
-    protected $nonCommentCodeLinesCount;
-    /**
-     * @var int
-     */
-    protected $maxInheritanceDepth;
-    /**
-     * @var int
-     */
-    protected $codeLinesCount;
-    /**
-     * @var int
-     */
-    protected $logicalCodeLinesCount;
-    /**
-     * @var int
-     */
-    protected $leafClassesCount;
-    /**
-     * @var int
-     */
-    protected $referencedClassesCount;
-    /**
-     * @var int
-     */
-    protected $executableCodeLinesCount;
-    /**
-     * @var int
-     */
-    protected $concreteClassesCount;
-    /**
-     * @var int
-     */
-    protected $abstractClassesCount;
-    /**
-     * @var int
-     */
-    protected $commentCodeLinesCount;
-    /**
-     * @var int
-     */
-    protected $extendedCyclomaticCount;
-    /**
-     * @var int
-     */
-    protected $cyclomaticCount;
-    /**
-     * @var int
-     */
-    protected $callsCount;
+    protected $averageHierarchyHeight;
+
     /**
      * @var float
      */
-    protected $derivedClassesAvg;
-    /**
-     * @var float
-     */
-    protected $hierarchyHeightAvg;
+    protected $averageNumberOfDerivedClasses;
 
     /**
-     * Load metrics from array
-     *
-     * @param array $data
+     * @var int
      */
-    public function fromArray($data = array())
+    protected $calls;
+
+    /**
+     * @var int
+     */
+    protected $cyclomaticComplexityNumber;
+
+    /**
+     * @var int
+     */
+    protected $extendedCyclomaticComplexityNumber;
+
+    /**
+     * @var int
+     */
+    protected $commentLinesOfCode;
+
+    /**
+     * @var int
+     */
+    protected $numberOfAbstractClasses;
+
+    /**
+     * @var int
+     */
+    protected $numberOfConcreteClasses;
+
+    /**
+     * @var int
+     */
+    protected $executableLinesOfCode;
+
+    /**
+     * @var int
+     */
+    protected $numberOfReferencedClasses;
+
+    /**
+     * @var int
+     */
+    protected $numberOfLeafClasses;
+
+    /**
+     * @var int
+     */
+    protected $logicalLinesOfCode;
+
+    /**
+     * @var int
+     */
+    protected $linesOfCode;
+
+    /**
+     * @varint
+     */
+    protected $maximumDepthOfInheritanceTree;
+
+    /**
+     * @var int
+     */
+    protected $nonCommentLinesOfCode;
+
+    /**
+     * @var int
+     */
+    protected $numberOfClasses;
+
+    /**
+     * @var int
+     */
+    protected $numberOfFunctions;
+
+    /**
+     * @var int
+     */
+    protected $numberOfInterfaces;
+
+    /**
+     * @var int
+     */
+    protected $numberOfMethods;
+
+    /**
+     * @var int
+     */
+    protected $numberOfPackages;
+
+    /**
+     * @var int
+     */
+    protected $roots;
+
+    /**
+     * @param float $averageHierarchyHeight
+     */
+    public function setAverageHierarchyHeight($averageHierarchyHeight)
     {
-        if(isset($data['pdepend.average_hierarchy_height'])) {
-            $this->loadGeneralFromArray($data);
-            $this->loadCountFromArray($data);
-        }
+        $this->averageHierarchyHeight = $averageHierarchyHeight;
     }
 
     /**
-     * Load general infos from array
-     *
-     * @param array $data
+     * @return float
      */
-    public function loadGeneralFromArray($data = array())
+    public function getAverageHierarchyHeight()
     {
-        $this->callsCount = $data['pdepend.calls'];
-        $this->codeLinesCount = $data['pdepend.lines_of_code'];
-        $this->commentCodeLinesCount = $data['pdepend.comment_lines_of_code'];
-        $this->derivedClassesAvg = $data['pdepend.average_number_of_derived_classes'];
-        $this->executableCodeLinesCount = $data['pdepend.executable_lines_of_code'];
-        $this->logicalCodeLinesCount = $data['pdepend.logical_lines_of_code'];
-        $this->maxInheritanceDepth = $data['pdepend.maximum_depth_of_inheritance_tree'];
-        $this->nonCommentCodeLinesCount = $data['pdepend.non_comment_lines_of_code'];
-        $this->hierarchyHeightAvg = $data['pdepend.average_hierarchy_height'];
+        return $this->averageHierarchyHeight;
     }
 
     /**
-     * Load countable infos from array
-     *
-     * @param array $data
+     * @param float $averageNumberOfDerivedClasses
      */
-    public function loadCountFromArray($data = array())
+    public function setAverageNumberOfDerivedClasses($averageNumberOfDerivedClasses)
     {
-
-        $this->abstractClassesCount = $data['pdepend.number_of_abstract_classes'];
-        $this->classesCount = $data['pdepend.number_of_classes'];
-        $this->concreteClassesCount = $data['pdepend.number_of_concrete_classes'];
-        $this->cyclomaticCount = $data['pdepend.extended_cyclomatic_complexity_number'];;
-        $this->extendedCyclomaticCount = $data['pdepend.extended_cyclomatic_complexity_number'];
-        $this->cyclomaticCount = $data['pdepend.cyclomatic_complexity_number'];
-        $this->methodsCount = $data['pdepend.number_of_methods'];
-        $this->interfacesCount = $data['pdepend.number_of_interfaces'];
-        $this->functionsCount = $data['pdepend.number_of_functions'];
-        $this->packagesCount = $data['pdepend.number_of_packages'];
-        $this->leafClassesCount = $data['pdepend.number_of_leaf_classes'];
-        $this->referencedClassesCount = $data['pdepend.number_of_referenced_classes'];
+        $this->averageNumberOfDerivedClasses = $averageNumberOfDerivedClasses;
     }
 
     /**
-     * @param mixed $abstractClassesCount
+     * @return float
+     */
+    public function getAverageNumberOfDerivedClasses()
+    {
+        return $this->averageNumberOfDerivedClasses;
+    }
+
+    /**
+     * @param int $calls
+     */
+    public function setCalls($calls)
+    {
+        $this->calls = $calls;
+    }
+
+    /**
      * @return int
      */
-    public function setAbstractClassesCount($abstractClassesCount)
+    public function getCalls()
     {
-        $this->abstractClassesCount = $abstractClassesCount;
+        return $this->calls;
+    }
 
-        return $this;
+    /**
+     * @param int $commentLinesOfCode
+     */
+    public function setCommentLinesOfCode($commentLinesOfCode)
+    {
+        $this->commentLinesOfCode = $commentLinesOfCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCommentLinesOfCode()
+    {
+        return $this->commentLinesOfCode;
+    }
+
+    /**
+     * @param int $cyclomaticComplexityNumber
+     */
+    public function setCyclomaticComplexityNumber($cyclomaticComplexityNumber)
+    {
+        $this->cyclomaticComplexityNumber = $cyclomaticComplexityNumber;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCyclomaticComplexityNumber()
+    {
+        return $this->cyclomaticComplexityNumber;
+    }
+
+    /**
+     * @param int $executableLinesOfCode
+     */
+    public function setExecutableLinesOfCode($executableLinesOfCode)
+    {
+        $this->executableLinesOfCode = $executableLinesOfCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExecutableLinesOfCode()
+    {
+        return $this->executableLinesOfCode;
+    }
+
+    /**
+     * @param int $extendedCyclomaticComplexityNumber
+     */
+    public function setExtendedCyclomaticComplexityNumber($extendedCyclomaticComplexityNumber)
+    {
+        $this->extendedCyclomaticComplexityNumber = $extendedCyclomaticComplexityNumber;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExtendedCyclomaticComplexityNumber()
+    {
+        return $this->extendedCyclomaticComplexityNumber;
+    }
+
+    /**
+     * @param int $linesOfCode
+     */
+    public function setLinesOfCode($linesOfCode)
+    {
+        $this->linesOfCode = $linesOfCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLinesOfCode()
+    {
+        return $this->linesOfCode;
+    }
+
+    /**
+     * @param int $logicalLinesOfCode
+     */
+    public function setLogicalLinesOfCode($logicalLinesOfCode)
+    {
+        $this->logicalLinesOfCode = $logicalLinesOfCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLogicalLinesOfCode()
+    {
+        return $this->logicalLinesOfCode;
+    }
+
+    /**
+     * @param mixed $maximumDepthOfInheritanceTree
+     */
+    public function setMaximumDepthOfInheritanceTree($maximumDepthOfInheritanceTree)
+    {
+        $this->maximumDepthOfInheritanceTree = $maximumDepthOfInheritanceTree;
     }
 
     /**
      * @return mixed
      */
-    public function getAbstractClassesCount()
+    public function getMaximumDepthOfInheritanceTree()
     {
-        return $this->abstractClassesCount;
+        return $this->maximumDepthOfInheritanceTree;
     }
 
     /**
-     * @param mixed $callsCount
+     * @param int $nonCommentLinesOfCode
+     */
+    public function setNonCommentLinesOfCode($nonCommentLinesOfCode)
+    {
+        $this->nonCommentLinesOfCode = $nonCommentLinesOfCode;
+    }
+
+    /**
      * @return int
      */
-    public function setCallsCount($callsCount)
+    public function getNonCommentLinesOfCode()
     {
-        $this->callsCount = $callsCount;
-
-        return $this;
+        return $this->nonCommentLinesOfCode;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfAbstractClasses
      */
-    public function getCallsCount()
+    public function setNumberOfAbstractClasses($numberOfAbstractClasses)
     {
-        return $this->callsCount;
+        $this->numberOfAbstractClasses = $numberOfAbstractClasses;
     }
 
     /**
-     * @param mixed $classesCount
      * @return int
      */
-    public function setClassesCount($classesCount)
+    public function getNumberOfAbstractClasses()
     {
-        $this->classesCount = $classesCount;
-
-        return $this;
+        return $this->numberOfAbstractClasses;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfClasses
      */
-    public function getClassesCount()
+    public function setNumberOfClasses($numberOfClasses)
     {
-        return $this->classesCount;
+        $this->numberOfClasses = $numberOfClasses;
     }
 
     /**
-     * @param mixed $codeLinesCount
      * @return int
      */
-    public function setCodeLinesCount($codeLinesCount)
+    public function getNumberOfClasses()
     {
-        $this->codeLinesCount = $codeLinesCount;
-
-        return $this;
+        return $this->numberOfClasses;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfConcreteClasses
      */
-    public function getCodeLinesCount()
+    public function setNumberOfConcreteClasses($numberOfConcreteClasses)
     {
-        return $this->codeLinesCount;
+        $this->numberOfConcreteClasses = $numberOfConcreteClasses;
     }
 
     /**
-     * @param mixed $commentCodeLinesCount
      * @return int
      */
-    public function setCommentCodeLinesCount($commentCodeLinesCount)
+    public function getNumberOfConcreteClasses()
     {
-        $this->commentCodeLinesCount = $commentCodeLinesCount;
-
-        return $this;
+        return $this->numberOfConcreteClasses;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfFunctions
      */
-    public function getCommentCodeLinesCount()
+    public function setNumberOfFunctions($numberOfFunctions)
     {
-        return $this->commentCodeLinesCount;
+        $this->numberOfFunctions = $numberOfFunctions;
     }
 
     /**
-     * @param mixed $concreteClassesCount
      * @return int
      */
-    public function setConcreteClassesCount($concreteClassesCount)
+    public function getNumberOfFunctions()
     {
-        $this->concreteClassesCount = $concreteClassesCount;
-
-        return $this;
+        return $this->numberOfFunctions;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfInterfaces
      */
-    public function getConcreteClassesCount()
+    public function setNumberOfInterfaces($numberOfInterfaces)
     {
-        return $this->concreteClassesCount;
+        $this->numberOfInterfaces = $numberOfInterfaces;
     }
 
     /**
-     * @param mixed $cyclomaticCount
      * @return int
      */
-    public function setCyclomaticCount($cyclomaticCount)
+    public function getNumberOfInterfaces()
     {
-        $this->cyclomaticCount = $cyclomaticCount;
-
-        return $this;
+        return $this->numberOfInterfaces;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfLeafClasses
      */
-    public function getCyclomaticCount()
+    public function setNumberOfLeafClasses($numberOfLeafClasses)
     {
-        return $this->cyclomaticCount;
+        $this->numberOfLeafClasses = $numberOfLeafClasses;
     }
 
     /**
-     * @param mixed $derivedClassesAvg
      * @return int
      */
-    public function setDerivedClassesAvg($derivedClassesAvg)
+    public function getNumberOfLeafClasses()
     {
-        $this->derivedClassesAvg = $derivedClassesAvg;
-
-        return $this;
+        return $this->numberOfLeafClasses;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfMethods
      */
-    public function getDerivedClassesAvg()
+    public function setNumberOfMethods($numberOfMethods)
     {
-        return $this->derivedClassesAvg;
+        $this->numberOfMethods = $numberOfMethods;
     }
 
     /**
-     * @param mixed $executableCodeLinesCount
      * @return int
      */
-    public function setExecutableCodeLinesCount($executableCodeLinesCount)
+    public function getNumberOfMethods()
     {
-        $this->executableCodeLinesCount = $executableCodeLinesCount;
-
-        return $this;
+        return $this->numberOfMethods;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfPackages
      */
-    public function getExecutableCodeLinesCount()
+    public function setNumberOfPackages($numberOfPackages)
     {
-        return $this->executableCodeLinesCount;
+        $this->numberOfPackages = $numberOfPackages;
     }
 
     /**
-     * @param mixed $extendedCyclomaticCount
      * @return int
      */
-    public function setExtendedCyclomaticCount($extendedCyclomaticCount)
+    public function getNumberOfPackages()
     {
-        $this->extendedCyclomaticCount = $extendedCyclomaticCount;
-
-        return $this;
+        return $this->numberOfPackages;
     }
 
     /**
-     * @return mixed
+     * @param int $numberOfReferencedClasses
      */
-    public function getExtendedCyclomaticCount()
+    public function setNumberOfReferencedClasses($numberOfReferencedClasses)
     {
-        return $this->extendedCyclomaticCount;
+        $this->numberOfReferencedClasses = $numberOfReferencedClasses;
     }
 
     /**
-     * @param mixed $functionsCount
      * @return int
      */
-    public function setFunctionsCount($functionsCount)
+    public function getNumberOfReferencedClasses()
     {
-        $this->functionsCount = $functionsCount;
-
-        return $this;
+        return $this->numberOfReferencedClasses;
     }
 
     /**
-     * @return mixed
+     * @param int $roots
      */
-    public function getFunctionsCount()
+    public function setRoots($roots)
     {
-        return $this->functionsCount;
+        $this->roots = $roots;
     }
 
     /**
-     * @param mixed $hierarchyHeightAvg
      * @return int
      */
-    public function setHierarchyHeightAvg($hierarchyHeightAvg)
+    public function getRoots()
     {
-        $this->hierarchyHeightAvg = $hierarchyHeightAvg;
-
-        return $this;
+        return $this->roots;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHierarchyHeightAvg()
-    {
-        return $this->hierarchyHeightAvg;
-    }
-
-    /**
-     * @param mixed $interfacesCount
-     * @return int
-     */
-    public function setInterfacesCount($interfacesCount)
-    {
-        $this->interfacesCount = $interfacesCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getInterfacesCount()
-    {
-        return $this->interfacesCount;
-    }
-
-    /**
-     * @param mixed $leafClassesCount
-     * @return int
-     */
-    public function setLeafClassesCount($leafClassesCount)
-    {
-        $this->leafClassesCount = $leafClassesCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLeafClassesCount()
-    {
-        return $this->leafClassesCount;
-    }
-
-    /**
-     * @param mixed $logicalCodeLinesCount
-     * @return int
-     */
-    public function setLogicalCodeLinesCount($logicalCodeLinesCount)
-    {
-        $this->logicalCodeLinesCount = $logicalCodeLinesCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLogicalCodeLinesCount()
-    {
-        return $this->logicalCodeLinesCount;
-    }
-
-    /**
-     * @param mixed $maxInheritanceDepth
-     * @return int
-     */
-    public function setMaxInheritanceDepth($maxInheritanceDepth)
-    {
-        $this->maxInheritanceDepth = $maxInheritanceDepth;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMaxInheritanceDepth()
-    {
-        return $this->maxInheritanceDepth;
-    }
-
-    /**
-     * @param mixed $methodsCount
-     * @return int
-     */
-    public function setMethodsCount($methodsCount)
-    {
-        $this->methodsCount = $methodsCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMethodsCount()
-    {
-        return $this->methodsCount;
-    }
-
-    /**
-     * @param mixed $nonCommentCodeLinesCount
-     * @return int
-     */
-    public function setNonCommentCodeLinesCount($nonCommentCodeLinesCount)
-    {
-        $this->nonCommentCodeLinesCount = $nonCommentCodeLinesCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNonCommentCodeLinesCount()
-    {
-        return $this->nonCommentCodeLinesCount;
-    }
-
-    /**
-     * @param mixed $packagesCount
-     * @return int
-     */
-    public function setPackagesCount($packagesCount)
-    {
-        $this->packagesCount = $packagesCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPackagesCount()
-    {
-        return $this->packagesCount;
-    }
-
-    /**
-     * @param mixed $referencedClassesCount
-     * @return int
-     */
-    public function setReferencedClassesCount($referencedClassesCount)
-    {
-        $this->referencedClassesCount = $referencedClassesCount;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReferencedClassesCount()
-    {
-        return $this->referencedClassesCount;
-    }
 }

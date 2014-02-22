@@ -21,264 +21,252 @@ class Metrics
     /**
      * @var int
      */
-    protected $filesCount;
+    protected $files;
+
     /**
      * @var int
      */
-    protected $codeLinesCount;
+    protected $linesOfCode;
+
     /**
      * @var int
      */
-    protected $nonCommentCodeLinesCount;
+    protected $nonCommentLinesOfCode;
+
     /**
      * @var int
      */
-    protected $classesCount;
+    protected $classes;
+
     /**
      * @var int
      */
-    protected $methodsCount;
+    protected $methods;
+
     /**
      * @var int
      */
-    protected $coveredMethodsCount;
+    protected $coveredMethods;
+
     /**
      * @var int
      */
-    protected $conditionnalsCount;
+    protected $conditionals;
+
     /**
      * @var int
      */
-    protected $coveredConditionnalsCount;
+    protected $coveredConditionals;
+
     /**
      * @var int
      */
-    protected $statementsCount;
+    protected $statements;
+
     /**
      * @var int
      */
-    protected $coveredStatementsCount;
+    protected $coveredStatements;
+
     /**
      * @var int
      */
-    protected $elementsCount;
+    protected $elements;
+
     /**
      * @var int
      */
-    protected $coveredElementsCount;
+    protected $coveredElements;
 
     /**
-     * @param int $classesCount
+     * @param int $classes
      */
-    public function setClassesCount($classesCount)
+    public function setClasses($classes)
     {
-        $this->classesCount = $classesCount;
+        $this->classes = $classes;
     }
 
     /**
      * @return int
      */
-    public function getClassesCount()
+    public function getClasses()
     {
-        return $this->classesCount;
+        return $this->classes;
     }
 
     /**
-     * @param int $codeLinesCount
+     * @param int $conditionals
      */
-    public function setCodeLinesCount($codeLinesCount)
+    public function setConditionals($conditionals)
     {
-        $this->codeLinesCount = $codeLinesCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCodeLinesCount()
-    {
-        return $this->codeLinesCount;
-    }
-
-    /**
-     * @param int $conditionnalsCount
-     */
-    public function setConditionnalsCount($conditionnalsCount)
-    {
-        $this->conditionnalsCount = $conditionnalsCount;
+        $this->conditionals = $conditionals;
     }
 
     /**
      * @return int
      */
-    public function getConditionnalsCount()
+    public function getConditionals()
     {
-        return $this->conditionnalsCount;
+        return $this->conditionals;
     }
 
     /**
-     * @param int $coveredConditionnalsCount
+     * @param int $coveredConditionals
      */
-    public function setCoveredConditionnalsCount($coveredConditionnalsCount)
+    public function setCoveredConditionals($coveredConditionals)
     {
-        $this->coveredConditionnalsCount = $coveredConditionnalsCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCoveredConditionnalsCount()
-    {
-        return $this->coveredConditionnalsCount;
-    }
-
-    /**
-     * @param int $coveredElementsCount
-     */
-    public function setCoveredElementsCount($coveredElementsCount)
-    {
-        $this->coveredElementsCount = $coveredElementsCount;
+        $this->coveredConditionals = $coveredConditionals;
     }
 
     /**
      * @return int
      */
-    public function getCoveredElementsCount()
+    public function getCoveredConditionals()
     {
-        return $this->coveredElementsCount;
+        return $this->coveredConditionals;
     }
 
     /**
-     * @param int $coveredMethodsCount
+     * @param int $coveredElements
      */
-    public function setCoveredMethodsCount($coveredMethodsCount)
+    public function setCoveredElements($coveredElements)
     {
-        $this->coveredMethodsCount = $coveredMethodsCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCoveredMethodsCount()
-    {
-        return $this->coveredMethodsCount;
-    }
-
-    /**
-     * @param int $coveredStatementsCount
-     */
-    public function setCoveredStatementsCount($coveredStatementsCount)
-    {
-        $this->coveredStatementsCount = $coveredStatementsCount;
+        $this->coveredElements = $coveredElements;
     }
 
     /**
      * @return int
      */
-    public function getCoveredStatementsCount()
+    public function getCoveredElements()
     {
-        return $this->coveredStatementsCount;
+        return $this->coveredElements;
     }
 
     /**
-     * @param int $elementsCount
+     * @param int $coveredMethods
      */
-    public function setElementsCount($elementsCount)
+    public function setCoveredMethods($coveredMethods)
     {
-        $this->elementsCount = $elementsCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getElementsCount()
-    {
-        return $this->elementsCount;
-    }
-
-    /**
-     * @param int $filesCount
-     */
-    public function setFilesCount($filesCount)
-    {
-        $this->filesCount = $filesCount;
+        $this->coveredMethods = $coveredMethods;
     }
 
     /**
      * @return int
      */
-    public function getFilesCount()
+    public function getCoveredMethods()
     {
-        return $this->filesCount;
+        return $this->coveredMethods;
     }
 
     /**
-     * @param int $methodsCount
+     * @param int $coveredStatements
      */
-    public function setMethodsCount($methodsCount)
+    public function setCoveredStatements($coveredStatements)
     {
-        $this->methodsCount = $methodsCount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMethodsCount()
-    {
-        return $this->methodsCount;
-    }
-
-    /**
-     * @param int $nonCommentCodeLines
-     */
-    public function setNonCommentCodeLinesCount($nonCommentCodeLinesCount)
-    {
-        $this->nonCommentCodeLinesCount = $nonCommentCodeLinesCount;
+        $this->coveredStatements = $coveredStatements;
     }
 
     /**
      * @return int
      */
-    public function getNonCommentCodeLinesCount()
+    public function getCoveredStatements()
     {
-        return $this->nonCommentCodeLinesCount;
+        return $this->coveredStatements;
     }
 
     /**
-     * @param int $statementsCount
+     * @param int $elements
      */
-    public function setStatementsCount($statementsCount)
+    public function setElements($elements)
     {
-        $this->statementsCount = $statementsCount;
+        $this->elements = $elements;
     }
 
     /**
      * @return int
      */
-    public function getStatementsCount()
+    public function getElements()
     {
-        return $this->statementsCount;
+        return $this->elements;
     }
 
     /**
-     * Load coverage metrics from array
-     *
-     * @param array $data
+     * @param int $files
      */
-    public function fromArray(array $data)
+    public function setFiles($files)
     {
-        if(isset($data['php_code_coverage.files'])) {
-            $this->filesCount = $data['php_code_coverage.files'];
-            $this->codeLinesCount = $data['php_code_coverage.lines_of_code'];
-            $this->nonCommentCodeLinesCount = $data['php_code_coverage.non_comment_lines_of_code'];
-            $this->classesCount = $data['php_code_coverage.classes'];
-            $this->methodsCount = $data['php_code_coverage.methods'];
-            $this->coveredMethodsCount = $data['php_code_coverage.covered_methods'];
-            $this->conditionnalsCount = $data['php_code_coverage.conditionals'];
-            $this->coveredConditionnalsCount = $data['php_code_coverage.covered_conditionals'];
-            $this->statementsCount = $data['php_code_coverage.statements'];
-            $this->coveredStatementsCount = $data['php_code_coverage.covered_statements'];
-            $this->elementsCount = $data['php_code_coverage.elements'];
-            $this->coveredElementsCount = $data['php_code_coverage.covered_elements'];
-        }
+        $this->files = $files;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param int $linesOfCode
+     */
+    public function setLinesOfCode($linesOfCode)
+    {
+        $this->linesOfCode = $linesOfCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLinesOfCode()
+    {
+        return $this->linesOfCode;
+    }
+
+    /**
+     * @param int $methods
+     */
+    public function setMethods($methods)
+    {
+        $this->methods = $methods;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMethods()
+    {
+        return $this->methods;
+    }
+
+    /**
+     * @param int $nonCommentLinesOfCode
+     */
+    public function setNonCommentLinesOfCode($nonCommentLinesOfCode)
+    {
+        $this->nonCommentLinesOfCode = $nonCommentLinesOfCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNonCommentLinesOfCode()
+    {
+        return $this->nonCommentLinesOfCode;
+    }
+
+    /**
+     * @param int $statements
+     */
+    public function setStatements($statements)
+    {
+        $this->statements = $statements;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatements()
+    {
+        return $this->statements;
     }
 }

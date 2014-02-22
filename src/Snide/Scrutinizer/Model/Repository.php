@@ -54,37 +54,6 @@ class Repository
     protected $coverageMetrics;
 
     /**
-     * Inject data from array
-     *
-     * @param array $data
-     */
-    public function fromArray($data = array())
-    {
-        if (isset($data['branch'])) {
-            $this->branch = $data['branch'];
-        }
-
-        if (isset($data['values'])) {
-            $this->metricsFromArray($data);
-        }
-    }
-
-    /**
-     * Load metrics from array
-     *
-     * @param array $data
-     */
-    public function metricsFromArray($data = array())
-    {
-        $this->metrics = new Metrics();
-        $this->metrics->fromArray($data['values']);
-        $this->pdependMetrics = new PdependMetrics();
-        $this->pdependMetrics->fromArray($data['values']);
-        $this->coverageMetrics = new CoverageMetrics();
-        $this->coverageMetrics->fromArray($data['values']);
-    }
-
-    /**
      * Setter coerageMetrics
      *
      * @param \Snide\Scrutinizer\Model\Coverage\Metrics $coverageMetrics
