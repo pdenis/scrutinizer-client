@@ -131,7 +131,112 @@ class Metrics
     /**
      * @var int
      */
-    protected $nbIgnoredIssues ;
+    protected $nbIgnoredIssues;
+
+    /**
+     * @var float
+     */
+    protected $operationsWeightVeryGood;
+
+    /**
+     * @var float
+     */
+    protected $operationsWeightGood;
+
+    /**
+     * @var float
+     */
+    protected $operationsWeightSatisfactory;
+
+    /**
+     * @var float
+     */
+    protected $operationsWeightPass;
+
+    /**
+     * @var float
+     */
+    protected $operationsWeightCritical;
+
+    /**
+     * @param float $operationsWeightCritical
+     */
+    public function setOperationsWeightCritical($operationsWeightCritical)
+    {
+        $this->operationsWeightCritical = $operationsWeightCritical;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOperationsWeightCritical()
+    {
+        return $this->operationsWeightCritical;
+    }
+
+    /**
+     * @param float $operationsWeightGood
+     */
+    public function setOperationsWeightGood($operationsWeightGood)
+    {
+        $this->operationsWeightGood = $operationsWeightGood;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOperationsWeightGood()
+    {
+        return $this->operationsWeightGood;
+    }
+
+    /**
+     * @param float $operationsWeightPass
+     */
+    public function setOperationsWeightPass($operationsWeightPass)
+    {
+        $this->operationsWeightPass = $operationsWeightPass;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOperationsWeightPass()
+    {
+        return $this->operationsWeightPass;
+    }
+
+    /**
+     * @param float $operationsWeightSatisfactory
+     */
+    public function setOperationsWeightSatisfactory($operationsWeightSatisfactory)
+    {
+        $this->operationsWeightSatisfactory = $operationsWeightSatisfactory;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOperationsWeightSatisfactory()
+    {
+        return $this->operationsWeightSatisfactory;
+    }
+
+    /**
+     * @param float $operationsWeightVeryGood
+     */
+    public function setOperationsWeightVeryGood($operationsWeightVeryGood)
+    {
+        $this->operationsWeightVeryGood = $operationsWeightVeryGood;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOperationsWeightVeryGood()
+    {
+        return $this->operationsWeightVeryGood;
+    }
 
     /**
      * @param int $nbClasses
