@@ -109,7 +109,6 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
     public function testLoad()
     {
         $data = json_decode($this->json, true);
-        $this->object = $this->hydrator->hydrate($this->object, $data['values'], 'scrutinizer');
         $this->object->setCoverageMetrics($this->hydrator->hydrate(new CoverageMetrics(), $data['values'], 'php_code_coverage'));
         $this->object->setPdependMetrics($this->hydrator->hydrate(new PdependMetrics(), $data['values'], 'pdepend'));
         $this->object->setMetrics($this->hydrator->hydrate(new Metrics(), $data['values'], 'scrutinizer'));

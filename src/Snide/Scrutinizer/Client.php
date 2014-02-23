@@ -84,7 +84,10 @@ class Client
             throw new \UnexpectedValueException(sprintf('Response is empty for url %s', $response));
         }
 
-        return $this->createRepository($response);
+        $repository = $this->createRepository($response);
+        $repository->setSlug($slug);
+
+        return $repository;
     }
 
     /**
@@ -136,7 +139,6 @@ class Client
      */
     protected function hydrate(Repository $repository, array $data = array())
     {
-        $repository = $this->hydrator->hydrate($repository, $data, 'scrutinizer');
         $repository->setCoverageMetrics($this->hydrator->hydrate(new CoverageMetrics(), $data, 'php_code_coverage'));
         $repository->setPdependMetrics($this->hydrator->hydrate(new PdependMetrics(), $data, 'pdepend'));
         $repository->setMetrics($this->hydrator->hydrate(new Metrics(), $data, 'scrutinizer'));
