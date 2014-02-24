@@ -100,6 +100,11 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
                 "scrutinizer.weight.satisfactory": 0,
                 "scrutinizer.weight.pass": 0,
                 "scrutinizer.weight.critical": 0,
+                "scrutinizer.operations_weight.very_good": 77.2,
+                "scrutinizer.operations_weight.good": 0,
+                "scrutinizer.operations_weight.satisfactory": 0,
+                "scrutinizer.operations_weight.pass": 0,
+                "scrutinizer.operations_weight.critical": 0,
                 "scrutinizer.nb_issues": 8,
                 "scrutinizer.nb_ignored_issues": 0
             }
@@ -120,11 +125,8 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(16, $this->object->getMetrics()->getNbOperationsVeryGood());
         $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsGood());
         $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsSatisfactory());
-        $this->assertEquals(0, $this->object->getMetrics()->getWeightSatisfactory());
         $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsPass());
-        $this->assertEquals(0, $this->object->getMetrics()->getWeightPass());
         $this->assertEquals(0, $this->object->getMetrics()->getNbOperationsCritical());
-        $this->assertEquals(0, $this->object->getMetrics()->getWeightCritical());
         $this->assertEquals(6, $this->object->getMetrics()->getNbClasses());
         $this->assertEquals(6, $this->object->getMetrics()->getNbClassesVeryGood());
         $this->assertEquals(0, $this->object->getMetrics()->getNbClassesPass());
@@ -134,9 +136,14 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $this->object->getMetrics()->getNbIgnoredIssues());
         $this->assertEquals(77.2, $this->object->getMetrics()->getWeightVeryGood());
         $this->assertEquals(0, $this->object->getMetrics()->getWeightGood());
-
-
-
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightPass());
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightCritical());
+        $this->assertEquals(0, $this->object->getMetrics()->getWeightSatisfactory());
+        $this->assertEquals(77.2, $this->object->getMetrics()->getOperationsWeightVeryGood());
+        $this->assertEquals(0, $this->object->getMetrics()->getOperationsWeightGood());
+        $this->assertEquals(0, $this->object->getMetrics()->getOperationsWeightPass());
+        $this->assertEquals(0, $this->object->getMetrics()->getOperationsWeightCritical());
+        $this->assertEquals(0, $this->object->getMetrics()->getOperationsWeightSatisfactory());
         // Pdepend metrics
         $this->assertEquals(6, $this->object->getPdependMetrics()->getNumberOfClasses());
         $this->assertEquals(0, $this->object->getPdependMetrics()->getNumberOfFunctions());
