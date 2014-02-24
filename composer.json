@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "kriswallsmith/buzz": "v0.5"
+        "guzzle/guzzle": "3.7"
     },
     "autoload": {
         "psr-0": {

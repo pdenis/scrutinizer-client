@@ -11,7 +11,6 @@
 
 namespace Snide\Scrutinizer;
 
-use Buzz\Browser;
 use Snide\Scrutinizer\Hydrator\SimpleHydrator;
 
 /**
@@ -60,13 +59,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testBrowser()
+    public function testClient()
     {
         $this->object = new Client();
-        $this->assertInstanceOf('Buzz\\Browser', $this->object->getBrowser());
-        $browser = new Browser();
-        $this->object = new Client($browser);
-        $this->assertEquals($browser, $this->object->getBrowser());
+        $this->assertInstanceOf('Guzzle\Http\Client', $this->object->getClient());
     }
 
     public function testHydrator()

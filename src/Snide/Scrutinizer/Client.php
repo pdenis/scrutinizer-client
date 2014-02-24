@@ -11,12 +11,12 @@
 
 namespace Snide\Scrutinizer;
 
-use Buzz\Browser;
 use Snide\Scrutinizer\Hydrator\SimpleHydrator;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
 use Snide\Scrutinizer\Model\Metrics;
 use Snide\Scrutinizer\Model\Repository;
+use Guzzle\Http\Client as GuzzleClient;
 
 /**
  * Class Client
@@ -30,13 +30,7 @@ class Client
      *
      * @var string
      */
-    protected $apiUrl = 'https://scrutinizer-ci.com/api/repositories';
-    /**
-     * Buzz browser client
-     *
-     * @var Browser
-     */
-    protected $browser;
+    protected $endpoint = 'https://scrutinizer-ci.com/api/repositories';
 
     /**
      * Object Hydrator
@@ -44,24 +38,28 @@ class Client
      * @var SimpleHydrator
      */
     protected $hydrator;
+
+    /**
+     * Guzzle client
+     *
+     * @var \Guzzle\Http\Client
+     */
+    protected $client;
+
     /**
      * Constructor
      *
-     * @param Browser $browser
      * @param Hydrator\SimpleHydrator $hydrator
      */
-    public function __construct(Browser $browser = null, SimpleHydrator $hydrator = null)
+    public function __construct(SimpleHydrator $hydrator = null)
     {
-        if (null === $browser) {
-            $browser = new Browser();
-        }
-
         if(null === $hydrator) {
             $hydrator = new SimpleHydrator();
         }
 
         $this->setHydrator($hydrator);
-        $this->setBrowser($browser);
+
+        $this->client = new GuzzleClient($this->endpoint, array());
     }
 
     /**
@@ -78,7 +76,7 @@ class Client
             throw new \UnexpectedValueException(sprintf('Repository type %s is not valid', $repoType));
         }
 
-        $response = $this->getResponse($slug, $repoType);
+        $response = $this->getResponse(sprintf('%s/%s/metrics', $repoType, $slug));
 
         if (!$response || isset($repositoryArray['error'])) {
             throw new \UnexpectedValueException(sprintf('Response is empty for url %s', $response));
@@ -88,26 +86,6 @@ class Client
         $repository->setSlug($slug);
 
         return $repository;
-    }
-
-    /**
-     * Getter browser
-     *
-     * @return Browser
-     */
-    public function getBrowser()
-    {
-        return $this->browser;
-    }
-
-    /**
-     * Setter browser
-     *
-     * @param Browser $browser
-     */
-    public function setBrowser(Browser $browser)
-    {
-        $this->browser = $browser;
     }
 
     /**
@@ -131,6 +109,22 @@ class Client
     }
 
     /**
+     * @param \Snide\Travis\Client $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
+    /**
+     * @return \Snide\Travis\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
      * Hydrate Repository
      *
      * @param Repository $repository
@@ -147,19 +141,6 @@ class Client
     }
 
     /**
-     * Get json response
-     *
-     * @param $slug
-     * @param string $repoType ("g"=gituhb, "b"=bitbucket)
-     * @return mixed
-     */
-    protected function getResponse($slug, $repoType = 'g')
-    {
-        $repositoryUrl = sprintf('%s/%s/%s/metrics', $this->apiUrl, $repoType, $slug);
-        return json_decode($this->browser->get($repositoryUrl)->getContent(), true);
-    }
-
-    /**
      * Create repoistory from response data
      *
      * @param array $response
@@ -172,5 +153,20 @@ class Client
         $repository->setBranch($response['branch']);
 
         return $repository;
+    }
+
+    /**
+     * Get Response from API
+     * Response is an array (Result of json_decode)
+     *
+     * @param string $uri API URI
+     * @param array $queryParams Query params
+     * @return mixed
+     */
+    protected function getResponse($uri, array $queryParams = array())
+    {
+        $request = $this->client->get($uri, array(), array('query' => $queryParams));
+
+        return $request->send()->json();
     }
 }
