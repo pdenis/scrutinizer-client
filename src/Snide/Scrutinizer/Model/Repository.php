@@ -54,6 +54,47 @@ class Repository
     protected $coverageMetrics;
 
     /**
+     * Repository type (g=github, b=bitbucket)
+     *
+     *@var string
+     */
+    protected $type;
+
+
+
+    /**
+     * Constructor
+     *
+     * @param string $slug
+     * @param string $type (g=github, b=bitbucket)
+     */
+    public function __construct($slug = null, $type = 'g')
+    {
+        $this->slug = $slug;
+        $this->setType($type);
+    }
+
+    /**
+     * @param mixed $type
+     * @throws \Exception
+     */
+    public function setType($type)
+    {
+        if(!in_array($type, array('b', 'g'))) {
+            throw new \UnexpectedValueException(sprintf('Repository type %s is not valid', $type));
+        }
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Setter coerageMetrics
      *
      * @param \Snide\Scrutinizer\Model\Coverage\Metrics $coverageMetrics

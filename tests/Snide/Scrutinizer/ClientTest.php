@@ -12,6 +12,7 @@
 namespace Snide\Scrutinizer;
 
 use Snide\Scrutinizer\Hydrator\SimpleHydrator;
+use Snide\Scrutinizer\Model\Repository;
 
 /**
  * Class ClientTest
@@ -42,17 +43,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->object = new Client();
 
         try {
-            $this->object->fetchRepository('pdenis/monitoring', 'u');
+            new Repository('pdenis/monitoring', 'u');
             $this->fail('Undefined repo type');
         }catch(\Exception $e) {
             $this->assertInstanceOf('\UnexpectedValueException', $e);
         }
 
-        $repo = $this->object->fetchRepository('pdenis/monitoring');
+        $repo = $this->object->fetchRepository(new Repository('pdenis/monitoring'));
         $this->assertInstanceOf('Snide\\Scrutinizer\\Model\\Repository', $repo);
 
         try {
-            $repo = $this->object->fetchRepository('unknown/repo');
+            $repo = $this->object->fetchRepository(new Repository('unknown/repo'));
             $this->fail('Undefined repo');
         }catch(\Exception $e) {
 

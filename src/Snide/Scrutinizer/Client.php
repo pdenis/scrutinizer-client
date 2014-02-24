@@ -65,25 +65,26 @@ class Client
     /**
      * Fetch data from repository URL
      *
-     * @param string $slug login/repository format
-     * @param string $repoType ("g" or "b")
-     * @return \Snide\Scrutinizer\Model\Repository
+     * @param Model\Repository $repository
      * @throws \UnexpectedValueException
+     * @return \Snide\Scrutinizer\Model\Repository
      */
-    public function fetchRepository($slug, $repoType = 'g')
+    public function fetchRepository(Repository $repository)
     {
-        if (!in_array($repoType, array('g', 'b'))) {
-            throw new \UnexpectedValueException(sprintf('Repository type %s is not valid', $repoType));
-        }
-
-        $response = $this->getResponse(sprintf('%s/%s/metrics', $repoType, $slug));
+        $response = $this->getResponse(
+            sprintf('%s/%s/metrics',
+                $repository->getType(),
+                $repository->getSlug()
+            )
+        );
 
         if (!$response || isset($repositoryArray['error'])) {
             throw new \UnexpectedValueException(sprintf('Response is empty for url %s', $response));
         }
 
-        $repository = $this->createRepository($response);
-        $repository->setSlug($slug);
+        $repository = $this->hydrate($repository, $response['values']);
+        $repository->setBranch($response['branch']);
+
 
         return $repository;
     }
@@ -136,21 +137,6 @@ class Client
         $repository->setCoverageMetrics($this->hydrator->hydrate(new CoverageMetrics(), $data, 'php_code_coverage'));
         $repository->setPdependMetrics($this->hydrator->hydrate(new PdependMetrics(), $data, 'pdepend'));
         $repository->setMetrics($this->hydrator->hydrate(new Metrics(), $data, 'scrutinizer'));
-
-        return $repository;
-    }
-
-    /**
-     * Create repoistory from response data
-     *
-     * @param array $response
-     * @return Repository
-     */
-    protected function createRepository(array $response = array())
-    {
-        $repository = new Repository();
-        $repository = $this->hydrate($repository, $response['values']);
-        $repository->setBranch($response['branch']);
 
         return $repository;
     }
