@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Snide scrutinizer-client package.
+ * This file is part of the Snide scrutinizer-httpClient package.
  *
  * (c) Pascal DENIS <pascal.denis.75@gmail.com>
  *
@@ -11,12 +11,15 @@
 
 namespace Snide\Scrutinizer;
 
+use Guzzle\Plugin\Cache\CachePlugin;
+use Guzzle\Plugin\Cookie\CookiePlugin;
 use Snide\Scrutinizer\Hydrator\SimpleHydrator;
 use Snide\Scrutinizer\Model\Pdepend\Metrics as PdependMetrics;
 use Snide\Scrutinizer\Model\Coverage\Metrics as CoverageMetrics;
 use Snide\Scrutinizer\Model\Metrics;
 use Snide\Scrutinizer\Model\Repository;
 use Guzzle\Http\Client as GuzzleClient;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class Client
@@ -40,11 +43,11 @@ class Client
     protected $hydrator;
 
     /**
-     * Guzzle client
+     * Guzzle Client
      *
      * @var \Guzzle\Http\Client
      */
-    protected $client;
+    protected $httpClient;
 
     /**
      * Constructor
@@ -59,7 +62,7 @@ class Client
 
         $this->setHydrator($hydrator);
 
-        $this->client = new GuzzleClient($this->endpoint, array());
+        $this->httpClient = new GuzzleClient($this->endpoint, array());
     }
 
     /**
@@ -110,19 +113,13 @@ class Client
     }
 
     /**
-     * @param \Snide\Travis\Client $client
+     * Add Http client subscriber
+     *
+     * @param EventSubscriberInterface $subscriber
      */
-    public function setClient($client)
+    public function addSubscriber(EventSubscriberInterface $subscriber)
     {
-        $this->client = $client;
-    }
-
-    /**
-     * @return \Snide\Travis\Client
-     */
-    public function getClient()
-    {
-        return $this->client;
+        $this->httpClient->addSubscriber($subscriber);
     }
 
     /**
@@ -151,7 +148,7 @@ class Client
      */
     protected function getResponse($uri, array $queryParams = array())
     {
-        $request = $this->client->get($uri, array(), array('query' => $queryParams));
+        $request = $this->httpClient->get($uri, array(), array('query' => $queryParams));
 
         return $request->send()->json();
     }

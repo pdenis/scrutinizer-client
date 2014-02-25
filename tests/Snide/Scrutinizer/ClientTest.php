@@ -35,9 +35,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * @covers Snide\Scrutinizer\Client::fetchRepository
-     */
     public function testFetchRepository()
     {
         $this->object = new Client();
@@ -58,12 +55,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         }catch(\Exception $e) {
 
         }
-    }
-
-    public function testClient()
-    {
-        $this->object = new Client();
-        $this->assertInstanceOf('Guzzle\Http\Client', $this->object->getClient());
     }
 
     public function testHydrator()
