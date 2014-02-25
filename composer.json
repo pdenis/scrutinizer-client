@@ -3,7 +3,7 @@
     "type":         "library",
     "description":  "PHP Scrutinizer Client",
     "keywords":     ["library", "scrutinizer", "snide"],
-    "homepage":     "http://github.com/pdenis/monitoring",
+    "homepage":     "http://github.com/pdenis/scrutinizer-client",
     "license":      "MIT",
     "authors":      [
         {
